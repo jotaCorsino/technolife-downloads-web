@@ -1,7 +1,7 @@
 # 06 — Relatório QA-001: validação do MVP
 
 - **Data:** 09/10/2026
-- **Estado:** AGUARDANDO_HOMOLOGACAO
+- **Estado:** CONCLUIDA — 🟢 homologada em 09/10/2026; PR #3 integrado à `main`.
 - **Base:** `main` sincronizada inicialmente em `dc03585`, após o merge do PR #2; commits documentais posteriores de `origin/main` até `827b3db` incorporados na branch de QA.
 - **Branch de QA:** `test/QA-001-validacao-mvp`.
 - **Pull Request:** [#3 — QA-001](https://github.com/jotaCorsino/technolife-downloads-web/pull/3).
@@ -54,4 +54,4 @@ As fixtures foram criadas em diretório temporário com conteúdo fictício. A a
 
 **Decisão explícita do responsável sobre publicabilidade:** sem login, o catálogo revela nomes e links de **todos** os arquivos elegíveis da pasta, inclusive novos uploads futuros. Inspecionar a origem real e estabelecer controle operacional que impeça material privado nela. Qualquer arquivo não publicável bloqueia a implantação nesse formato. A publicação também fica bloqueada até que document root, variáveis do PHP HTTP, versão/permissões e URL HTTPS sejam confirmados no cPanel.
 
-**Gate ÓRBITA:** QA-001 aguarda homologação humana. Não houve merge, deploy nem execução da DEP-001.
+**Gate ÓRBITA:** QA-001 homologada pelo responsável humano em 09/10/2026, PR #3 integrado no merge `cf992aad4f2dc43fdc18c3d23e7f6c2afd38bf61`. DEP-001 autorizada para preparação e verificações técnicas. **O deploy público continua condicionado** à decisão explícita sobre publicabilidade, configuração segura e smoke tests no cPanel.
