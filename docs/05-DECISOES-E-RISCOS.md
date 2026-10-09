@@ -1,42 +1,45 @@
 # 05 — Decisões, premissas e riscos
 
-## Decisões já definidas pelo escopo
+## Decisões de produto (revisadas em 09/10/2026)
 
-| ID | Decisão | Situação |
+| ID | Decisão | Estado |
 | --- | --- | --- |
-| DEC-001 | Produto é catálogo de **links**, não gerenciador/upload de executáveis | Confirmada |
-| DEC-002 | Interface minimalista, responsiva, com busca e copiar em um clique | Confirmada |
-| DEC-003 | Técnicos cadastram, editam e excluem títulos/URLs | Confirmada |
-| DEC-004 | Alterações precisam ser compartilhadas e persistentes | Confirmada |
-| DEC-005 | Priorizar HTML, CSS e JavaScript puro; PHP é opção natural no cPanel | Diretriz confirmada; ambiente a validar |
-| DEC-006 | Preferir autenticação STAFF do HESK sem login novo | Preferência; viabilidade pendente |
-| DEC-007 | SQLite via PDO é candidato inicial a persistência | Proposta técnica; pendente de validação |
-| DEC-008 | Trabalhar com ChatGPT/Codex/GitHub pelo Método ÓRBITA | Diretriz de processo |
+| DEC-001 | Catálogo de links diretos para arquivos já hospedados em `/downloads/` | Confirmada |
+| DEC-002 | Sem cadastro: arquivos existentes na pasta são a fonte única de dados | Confirmada |
+| DEC-003 | Somente leitura: abrir/baixar URL e copiar link | Confirmada |
+| DEC-004 | Pesquisa instantânea e normalização dos nomes dos arquivos | Confirmada |
+| DEC-005 | Sem login, integração HESK ou controle de acesso próprio | Confirmada |
+| DEC-006 | Sem banco de dados, arquivos JSON de cadastro ou APIs de escrita | Confirmada |
+| DEC-007 | HTML/CSS/JavaScript puro + PHP mínimo para leitura local do diretório | Proposta técnica |
+| DEC-008 | Método ÓRBITA, com implementação incremental e homologação humana | Confirmada |
+| DEC-009 | Na primeira versão, só arquivos regulares diretamente na pasta, excluindo dotfiles, diretórios e symlinks | Diretriz de segurança |
 
-## Questões técnicas ainda em aberto
+## Mudança de escopo
 
-**PEND-001 — Autenticação:** confirmar um método efetivamente seguro para verificar STAFF do HESK no PHP do painel, inclusive logout, sessões expiradas e CSRF. A simples presença de cookies do HESK não basta.
+A primeira proposta previa CRUD manual, persistência compartilhada e eventual autenticação STAFF. O responsável pelo projeto substituiu esse modelo por uma página de listagem automática, pública e sem operações administrativas, porque o objetivo é somente localizar e compartilhar endereços.
 
-**PEND-002 — Persistência:** testar suporte real a SQLite/PDO, armazenamento fora do webroot, permissões e concorrência. Se inviável, comparar alternativa simples e segura.
+**As antigas tarefas de CRUD, banco de dados e autenticação HESK estão canceladas e não devem ser implementadas.**
 
-**PEND-003 — Hospedagem:** estabelecer caminho definitivo do painel e o procedimento de publicação após validação do ambiente.
+## Validações antes do deploy
 
-**PEND-004 — Identidade visual:** observar componentes visuais efetivamente utilizados nos aplicativos internos antes de fixar cores, logotipo e detalhes de UI.
+**PEND-001 — Publicação:** a ausência de login significa que os títulos, extensões, nomes reais e URLs da pasta serão publicamente enumeráveis. Confirmar que esse inventário pode ser divulgado. Se existir conteúdo restrito na pasta, a versão pública deve ser bloqueada ou a fonte de listagem revista antes do deploy.
 
-**PEND-005 — Visibilidade:** repositório atualmente público; confirmar quais partes da implementação e da documentação podem ser publicadas sem revelar informações operacionais.
+**PEND-002 — Localização física:** confirmar caminho real do diretório `/downloads/` e permissões de leitura pelo processo PHP sem divulgar paths privados.
 
-## Riscos relevantes e tratamento esperado
+**PEND-003 — URL base:** confirmar a base HTTPS dos downloads e testar nomes com espaços, acentos e caracteres reservados.
 
-| Risco | Impacto | Prevenção / gate |
-| --- | --- | --- |
-| API acessível sem STAFF | Exposição ou alteração não autorizada do catálogo | Prova de autenticação no servidor + testes negativos antes do CRUD |
-| Repositório público com detalhes internos | Exposição de infraestrutura/segredos | Documentação sanitizada; não versionar configuração real |
-| Banco/JSON em diretório público | Vazamento de links e metadados | Dados fora do webroot; verificar permissões |
-| Escritas simultâneas | Perda ou corrupção de registros | Transações SQLite ou estratégia de locking atômico |
-| URL ou título malicioso | XSS, phishing, esquemas perigosos | Validação de URL e renderização segura de texto |
-| Falsa sensação de proteção por UI | Admin apenas oculto no navegador | Autorização em todos os endpoints, independente de UI |
-| Integração frágil com sessão HESK | Acesso indevido ou quebra com atualizações | POC isolada e testes de expiração/logout |
+**PEND-004 — UI:** verificar detalhes da identidade visual usada em outros projetos Technolife antes da homologação.
 
-## Critério para decidir pendências
+## Riscos e controles
 
-Registrar a decisão e sua evidência técnica antes de implementação dependente dela. O responsável humano aprova concessões de segurança ou mudanças de escopo. Problemas críticos não devem ser ignorados por estarem fora da tarefa corrente.
+| Risco | Tratamento esperado |
+| --- | --- |
+| Catálogo público revela todo o inventário da pasta | Revisão humana da pasta e autorização explícita de publicação |
+| `.htaccess`, dotfiles, links simbólicos ou pastas aparecem no catálogo | Filtrar nomes iniciados em ponto, não seguir symlinks, aceitar só arquivos regulares |
+| Nome malicioso causa XSS | Escapar HTML / renderizar nomes como texto |
+| URL incorreta por caracteres especiais | Codificar nome como segmento de URL e testar casos reais |
+| Entrada fornecida por visitante altera pasta consultada | Diretório fixo do lado servidor, sem parâmetros de caminho |
+| Erro do servidor expõe filesystem | Mensagem genérica e logging seguro |
+| Novos arquivos sensíveis surgem na pasta após deploy | Procedimento operacional para manter apenas arquivos publicáveis na origem indexada |
+
+**Não há credenciais, armazenamento compartilhado nem lógica administrativa a desenvolver.** O objetivo da arquitetura é minimizar superfície de risco mantendo o produto funcional.
