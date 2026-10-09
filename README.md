@@ -4,10 +4,10 @@
 
 ## Acompanhamento do desenvolvimento
 
-**Meta de entrega operacional:** 09/10/2026, até 15h (America/Sao_Paulo). **Implantação operacional reportada pelo responsável** em `https://suporte.technolife.net.br/links/`: listagem, cópia e download funcionando. Os testes HTTP de acesso e isolamento do código passaram conforme saída do Terminal do cPanel. Resta conferir que o HESK permanece funcional para encerrar formalmente a DEP-001.
+**Meta de entrega operacional:** 09/10/2026, até 15h (America/Sao_Paulo). **Implantação operacional reportada pelo responsável** em `https://suporte.technolife.net.br/links/`: listagem, cópia e download funcionando. Os testes HTTP de acesso e isolamento do código passaram conforme saída do Terminal do cPanel. O responsável confirmou que o HESK permaneceu funcionando normalmente e homologou o encerramento da DEP-001.
 
 **Atualizado em:** 09/10/2026  
-**Fase atual:** DEP-001 — site operacional e testes HTTP de segurança aprovados; conferência final de HESK pendente.
+**Fase atual:** todas as etapas concluídas e homologadas em 09/10/2026.
 **Etapas homologadas:** INIT-001, BOOT-001, SCAN-001, UI-001 e QA-001. PR #3 integrado em 09/10/2026.
 
 | Ordem | ID | Etapa | Status |
@@ -17,11 +17,11 @@
 | 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🟢 Concluído |
 | 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | 🟢 Concluído |
 | 4 | **[QA-001](tasks/QA-001-VALIDACAO-MVP.md)** | Testes funcionais e validações de segurança | 🟢 Concluído |
-| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | 🔵 Operacional — HESK pendente |
+| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | 🟢 Concluído — homologado |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** confirmar que o HESK continua funcionando (login e consultas de chamados). A página `/links/` responde HTTP 200 e os testes HTTP de `.htaccess` (403) e caminho do código privado (404) passaram. O responsável autorizou a exposição dos arquivos atuais e futuros, com exclusão de `.htaccess`.
+**Resultado:** implantação encerrada e aprovada pelo responsável, sem pendências do MVP. Testes HTTP de proteção aprovados e HESK funcionando normalmente.
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
