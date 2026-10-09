@@ -1,0 +1,28 @@
+# Segredos e configurações locais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dados e artefatos operacionais
+/storage/
+/data/
+*.sqlite
+*.sqlite3
+*.db
+*.db-*
+*.log
+*.bak
+*.backup
+*.zip
+
+# Dependências ou artefatos locais
+/vendor/
+/node_modules/
+/dist/
+/build/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
