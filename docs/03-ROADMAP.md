@@ -2,7 +2,7 @@
 
 ## Estado em 09/10/2026
 
-**Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. **INIT-001, BOOT-001, SCAN-001 e UI-001 homologadas. PR #2 integrado à `main`. QA-001 autorizada, ainda não executada.**
+**Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. **INIT-001, BOOT-001, SCAN-001 e UI-001 homologadas. PR #2 integrado à `main`. QA-001 validada localmente e aguardando homologação; pendências de cPanel registradas no [relatório de QA](06-RELATORIO-QA.md).**
 
 | Ordem | ID | Entrega | Estado |
 | --- | --- | --- | --- |
@@ -10,7 +10,7 @@
 | 1 | BOOT-001 | Vincular a pasta local ao GitHub com segurança | 🟢 Concluído — homologado |
 | 2 | [SCAN-001](../tasks/SCAN-001-LEITOR-DOWNLOADS.md) | Leitor PHP da pasta de downloads, filtro e URLs seguras | 🟢 Concluído — homologado, PR #1 integrado |
 | 3 | [UI-001](../tasks/UI-001-INTERFACE-CATALOGO.md) | Página responsiva, busca e botão de copiar | 🟢 Concluído — homologado, PR #2 integrado |
-| 4 | [QA-001](../tasks/QA-001-VALIDACAO-MVP.md) | Testes funcionais, segurança e preparação de implantação | ⚪ Autorizada — não iniciada |
+| 4 | [QA-001](../tasks/QA-001-VALIDACAO-MVP.md) | Testes funcionais, segurança e preparação de implantação | 🔵 Aguardando homologação |
 | 5 | DEP-001 | Validar exposição pública e implantar no cPanel | ⚪ Não iniciado |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação/aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado. A conclusão técnica não equivale à homologação humana.

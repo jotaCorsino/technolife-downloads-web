@@ -1,9 +1,9 @@
 # QA-001 — Validação funcional, técnica e de segurança do MVP
 
-**Estado:** AUTORIZADA em 09/10/2026 — execução não iniciada.
+**Estado:** AGUARDANDO_HOMOLOGACAO em 09/10/2026 — execução documentada em [`docs/06-RELATORIO-QA.md`](../docs/06-RELATORIO-QA.md).
 **Pré-requisito:** UI-001 homologada pelo responsável e integrada à `main` no PR #2; SCAN-001 homologada no PR #1.
 **Agente executor:** Codex, na working copy local `technolife-downloads-web`.
-**Branch prevista:** `test/QA-001-validacao-mvp`.
+**Branch executada:** `test/QA-001-validacao-mvp`.
 
 ## Objetivo
 
@@ -60,14 +60,14 @@ Não apresentar qualquer item de ambiente **não testado** como validado. O rela
 
 ## Critérios de aceite
 
-- [ ] Todos os comandos de teste executados com resultados e versões de PHP/Node reportados.
-- [ ] Cenários negativos e nomes especiais demonstrados sem divulgação de arquivos reais.
-- [ ] Interface validada em desktop e largura móvel; falhas de cópia e pesquisa testadas.
-- [ ] Nenhum endpoint de escrita, autenticação, banco, upload ou dependências externas foi introduzido.
-- [ ] `src/` e `tests/` permaneceriam fora do document root no desenho de implantação proposto.
-- [ ] Pendências de cPanel e publicabilidade **expressamente documentadas**, sem afirmações falsas de prontidão para produção.
-- [ ] Defeitos encontrados corrigidos apenas se dentro do escopo, com testes de regressão.
-- [ ] Relatório de QA, PR, branch, commit SHA e evidências apresentados à homologação humana.
+- [x] Todos os comandos de teste executados com resultados e versões de PHP/Node reportados.
+- [x] Cenários negativos e nomes especiais demonstrados sem divulgação de arquivos reais.
+- [x] Interface validada em desktop e largura móvel; falhas de cópia e pesquisa testadas.
+- [x] Nenhum endpoint de escrita, autenticação, banco, upload ou dependências externas foi introduzido.
+- [x] `src/` e `tests/` permaneceriam fora do document root no desenho de implantação proposto.
+- [x] Pendências de cPanel e publicabilidade **expressamente documentadas**, sem afirmações falsas de prontidão para produção.
+- [x] Nenhum defeito comprovado; nenhuma correção ou teste de regressão novo foi necessário.
+- [x] Relatório de QA, PR, branch, commit SHA e evidências preparados para homologação humana.
 
 ## Fora do escopo
 
