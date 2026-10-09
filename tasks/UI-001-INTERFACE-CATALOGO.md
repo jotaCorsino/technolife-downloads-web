@@ -1,6 +1,6 @@
 # UI-001 — Interface web da Central de Links
 
-**Estado:** AUTORIZADA em 09/10/2026 — implementação ainda não iniciada.
+**Estado:** AGUARDANDO_HOMOLOGACAO em 09/10/2026 — implementação e testes locais concluídos; revisão humana pendente.
 **Pré-requisito:** SCAN-001 homologada e integrada à `main` por meio do PR #1.
 **Agente implementador:** Codex, na working copy local `technolife-downloads-web`.
 **Branch prevista:** `feat/UI-001-interface-catalogo`.

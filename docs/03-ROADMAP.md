@@ -2,14 +2,14 @@
 
 ## Estado em 09/10/2026
 
-**Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. **INIT-001, BOOT-001 e SCAN-001 homologadas. PR #1 integrado à `main`. UI-001 autorizada, implementação ainda não iniciada.**
+**Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. **INIT-001, BOOT-001 e SCAN-001 homologadas. PR #1 integrado à `main`. UI-001 implementada e aguardando homologação.**
 
 | Ordem | ID | Entrega | Estado |
 | --- | --- | --- | --- |
 | 0 | INIT-001 | Fundação documental e revisão de escopo | 🟢 Concluído — aprovado |
 | 1 | BOOT-001 | Vincular a pasta local ao GitHub com segurança | 🟢 Concluído — homologado |
 | 2 | [SCAN-001](../tasks/SCAN-001-LEITOR-DOWNLOADS.md) | Leitor PHP da pasta de downloads, filtro e URLs seguras | 🟢 Concluído — homologado, PR #1 integrado |
-| 3 | [UI-001](../tasks/UI-001-INTERFACE-CATALOGO.md) | Página responsiva, busca e botão de copiar | ⚪ Autorizada — não iniciada |
+| 3 | [UI-001](../tasks/UI-001-INTERFACE-CATALOGO.md) | Página responsiva, busca e botão de copiar | 🔵 Aguardando homologação |
 | 4 | QA-001 | Testes de nomes/URLs, exclusões, atualização e estados de erro | ⚪ Não iniciado |
 | 5 | DEP-001 | Validar exposição pública e implantar no cPanel | ⚪ Não iniciado |
 

@@ -5,7 +5,8 @@
 ## Acompanhamento do desenvolvimento
 
 **Atualizado em:** 09/10/2026  
-**Fase atual:** UI-001 — autorizada, aguardando implementação.  
+**Fase atual:** UI-001 — implementada, aguardando homologação.
+
 **Etapas homologadas:** INIT-001, BOOT-001 e SCAN-001. PR #1 integrado em 09/10/2026.
 
 | Ordem | ID | Etapa | Status |
@@ -13,13 +14,13 @@
 | 0 | **INIT-001** | Fundação documental e definição do escopo | 🟢 Concluído |
 | 1 | **[BOOT-001](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)** | Preparação e sincronização do ambiente local | 🟢 Concluído |
 | 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🟢 Concluído |
-| 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | ⚪ Autorizada — não iniciada |
+| 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | 🔵 Aguardando homologação |
 | 4 | **QA-001** | Testes funcionais e validações de segurança | ⚪ Não iniciado |
 | 5 | **DEP-001** | Implantação e homologação final | ⚪ Não iniciado |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** sincronizar a `main` após o merge do PR #1 e executar exclusivamente a [UI-001](tasks/UI-001-INTERFACE-CATALOGO.md) em branch própria. Não fazer deploy nem iniciar a QA-001 automaticamente.
+**Próxima ação:** revisar as evidências da [UI-001](tasks/UI-001-INTERFACE-CATALOGO.md) e homologar ou solicitar correções. Não fazer deploy nem iniciar a QA-001 automaticamente.
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
@@ -72,6 +73,34 @@ O código deve:
 - tratar diretório ausente ou inacessível com mensagem genérica e sem listar nada.
 
 Os arquivos exibidos são gerenciados na hospedagem, fora da Central de Links.
+
+## Execução local com arquivos fictícios
+
+Use PHP 8+ e uma pasta temporária criada para o teste. Node.js 18+ é necessário somente para o teste do JavaScript. O servidor web deve apontar para `public/`, deixando `src/` e `tests/` fora da raiz pública.
+
+```bash
+fixture_dir=$(mktemp -d)
+printf 'exemplo\n' > "$fixture_dir/Technolife-RustDesk-Windows.zip"
+printf 'exemplo\n' > "$fixture_dir/Olá Mundo #1?.tar.gz"
+TECHNOLIFE_DOWNLOADS_DIR="$fixture_dir" \
+TECHNOLIFE_DOWNLOADS_BASE_URL='https://example.invalid/downloads' \
+php -S 127.0.0.1:8000 -t public
+```
+
+Abra `http://127.0.0.1:8000/`. Pesquise por `ola`, confira a contagem e o estado sem resultados, e use **Copiar link**. O endereço `example.invalid` é fictício: **Abrir / baixar** aponta diretamente para o URL gerado, mas não baixa um arquivo real neste exemplo. Para testar a pasta vazia, inicie o servidor com uma pasta temporária sem arquivos; para testar a mensagem de erro, inicie sem as duas variáveis. A página não escolhe diretório ou URL por parâmetros do visitante. Em produção, a página deve ser acessada por HTTPS para o Clipboard API funcionar nos navegadores compatíveis.
+
+Validações automatizadas locais:
+
+```bash
+php -l public/index.php
+php -l tests/InterfaceTest.php
+php tests/InterfaceTest.php
+node --check public/app.js
+node tests/InterfaceScriptTest.js
+php tests/DownloadScannerTest.php
+```
+
+Não há dependências de terceiros nem build. Os links **Abrir / baixar** usam a mesma aba; o navegador e o servidor definem se o arquivo abre ou é baixado.
 
 ## Documentação
 
