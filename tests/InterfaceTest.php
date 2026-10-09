@@ -80,6 +80,10 @@ try {
     check(str_contains($html, '3 arquivos disponíveis'), 'Contagem incorreta');
     check(str_contains($html, 'href="https://example.invalid/downloads/Ol%C3%A1%20Mundo%20%231%3F.tar.gz"'), 'Link direto codificado incorreto');
     check(str_contains($html, 'data-copy-url="https://example.invalid/downloads/Ol%C3%A1%20Mundo%20%231%3F.tar.gz"'), 'URL de cópia incorreta');
+    check(str_contains($html, 'aria-label="Abrir ou baixar Technolife-RustDesk-Windows.zip"'), 'Ação de download sem nome acessível');
+    check(str_contains($html, 'aria-label="Copiar link de Technolife-RustDesk-Windows.zip"'), 'Ação de cópia sem nome acessível');
+    check(str_contains($html, 'assets/logo-technolife.png'), 'Marca Technolife ausente');
+    check(!str_contains($html, '>Abrir / baixar</a>') && !str_contains($html, '>Copiar link</button>'), 'Ações devem exibir apenas ícones');
     check(str_contains($html, 'ACME &lt;img src=x onerror=alert(1)&gt;'), 'Nome HTML não foi escapado');
     check(!str_contains($html, '<img src=x onerror=alert(1)>'), 'HTML não confiável foi injetado');
     foreach (['.htaccess', 'alias.zip', 'inside.zip', $fixture] as $excluded) {
@@ -94,7 +98,7 @@ try {
     check(str_contains($missing, 'Não foi possível carregar os arquivos'), 'Erro de leitura não controlado');
     check(!str_contains($missing, $fixture), 'Caminho físico exposto no erro');
 
-    echo "PASS: interface PHP — sem configuração, pasta vazia, listagem, filtros, escape HTML, URL direta e erros controlados.\n";
+    echo "PASS: interface PHP — estados, listagem, escape HTML, URL direta, ações por ícones acessíveis e erros controlados.\n";
 } finally {
     removeTestDirectory($fixture);
 }

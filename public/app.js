@@ -41,7 +41,7 @@
         feedback.textContent = 'Link copiado.';
         feedback.dataset.state = 'success';
       } catch (_error) {
-        feedback.textContent = 'Não foi possível copiar. Use o link Abrir / baixar para acessar o arquivo.';
+        feedback.textContent = 'Não foi possível copiar.';
         feedback.dataset.state = 'error';
       }
     });

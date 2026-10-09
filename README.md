@@ -87,7 +87,7 @@ TECHNOLIFE_DOWNLOADS_BASE_URL='https://example.invalid/downloads' \
 php -S 127.0.0.1:8000 -t public
 ```
 
-Abra `http://127.0.0.1:8000/`. Pesquise por `ola`, confira a contagem e o estado sem resultados, e use **Copiar link**. O endereço `example.invalid` é fictício: **Abrir / baixar** aponta diretamente para o URL gerado, mas não baixa um arquivo real neste exemplo. Para testar a pasta vazia, inicie o servidor com uma pasta temporária sem arquivos; para testar a mensagem de erro, inicie sem as duas variáveis. A página não escolhe diretório ou URL por parâmetros do visitante. Em produção, a página deve ser acessada por HTTPS para o Clipboard API funcionar nos navegadores compatíveis.
+Abra `http://127.0.0.1:8000/`. Pesquise por `ola`, confira a contagem e o estado sem resultados, e use o ícone de copiar link. O endereço `example.invalid` é fictício: o ícone de abrir/baixar aponta diretamente para o URL gerado, mas não baixa um arquivo real neste exemplo. Os ícones têm nomes acessíveis e dicas ao passar o cursor. Para testar a pasta vazia, inicie o servidor com uma pasta temporária sem arquivos; para testar a mensagem de erro, inicie sem as duas variáveis. A página não escolhe diretório ou URL por parâmetros do visitante. Em produção, a página deve ser acessada por HTTPS para o Clipboard API funcionar nos navegadores compatíveis.
 
 Validações automatizadas locais:
 
