@@ -2,7 +2,7 @@
 
 ## Estado em 09/10/2026
 
-**Marco de entrega solicitado às 14h12:** disponibilizar a Central de Links para os técnicos **até 15h de 09/10/2026 (America/Sao_Paulo)**. Prazo operacional prioritário, condicionado à QA homologada e à validação de segurança antes do deploy. Ver [DEP-001](../tasks/DEP-001-IMPLANTACAO-CPANEL.md).
+**Marco de entrega solicitado às 14h12:** disponibilizar a Central de Links para os técnicos **até 15h de 09/10/2026 (America/Sao_Paulo)**, no endereço **`https://suporte.technolife.net.br/links/`**, criando a subpasta `links/` no domínio. Prazo prioritário, condicionado à segurança do deploy. Ver [DEP-001](../tasks/DEP-001-IMPLANTACAO-CPANEL.md).
 
 **Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. **INIT-001, BOOT-001, SCAN-001, UI-001 e QA-001 homologadas. PR #3 integrado à `main`. DEP-001 autorizada para preparação e verificações no cPanel; publicação pública condicionada aos gates descritos no [relatório de QA](06-RELATORIO-QA.md).**
 
