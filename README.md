@@ -61,8 +61,25 @@ Os arquivos exibidos são gerenciados na hospedagem, fora da Central de Links.
 - [Decisões e riscos](docs/05-DECISOES-E-RISCOS.md)
 - [BOOT-001 — Bootstrap local seguro](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)
 
-## Método e estado
+## Acompanhamento do desenvolvimento
+
+**Atualizado em:** 09/10/2026  
+**Fase atual:** BOOT-001 — execução técnica concluída; aguardando homologação humana.  
+**Implementação funcional:** não iniciada.
+
+| Ordem | Tarefa | Etapa / Entrega | Situação |
+| --- | --- | --- | --- |
+| 0 | **INIT-001** | Fundação documental e definição do escopo | Aguardando revisão |
+| 1 | **[BOOT-001](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)** | Preparação e sincronização do ambiente local | **Aguardando homologação** |
+| 2 | **SCAN-001** | Leitor PHP automático da pasta `/downloads/` | Planejada |
+| 3 | **UI-001** | Interface responsiva, pesquisa e cópia de links | Planejada |
+| 4 | **QA-001** | Testes funcionais e validações de segurança | Planejada |
+| 5 | **DEP-001** | Implantação na hospedagem e homologação final | Planejada |
+
+**Próxima ação:** homologar a BOOT-001 e sincronizar os novos commits documentais no ambiente local antes da primeira tarefa funcional. **Nenhuma etapa é aprovada automaticamente.**
+
+Os critérios de aceite e o histórico do planejamento estão no [roadmap completo](docs/03-ROADMAP.md). Esta tabela deve ser atualizada junto com o roadmap sempre que houver mudança de estado.
+
+## Método ÓRBITA
 
 Desenvolvimento assistido por IA pelo [Método ÓRBITA](https://github.com/jotaCorsino/orbita-development-model): **Planejar → Executar → Evidenciar → Homologar**. ChatGPT organiza o planejamento, Codex implementa tarefas autorizadas e o responsável humano homologa.
-
-**09/10/2026:** escopo simplificado definido, documentação ajustada e implementação funcional ainda não iniciada. Próxima etapa: bootstrap local antes da primeira funcionalidade.
