@@ -1,6 +1,6 @@
 # 07 — DEP-001, Fase A: pacote local para `/links/`
 
-**Estado:** 🟢 Fase A homologada em 09/10/2026 e integrada à `main` pelo [PR #4](https://github.com/jotaCorsino/technolife-downloads-web/pull/4), merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`. **Nada foi enviado ao servidor da empresa.** Fase B manual iniciada, dependente da confirmação do inventário publicável e do ambiente do cPanel.
+**Estado:** 🟢 Fase A homologada em 09/10/2026 e integrada à `main` pelo [PR #4](https://github.com/jotaCorsino/technolife-downloads-web/pull/4), merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`. **Fase B implantada manualmente e homologada em 09/10/2026.** O catálogo está operacional em `https://suporte.technolife.net.br/links/`; as evidências finais constam em [DEP-001](../tasks/DEP-001-IMPLANTACAO-CPANEL.md).
 
 ## Pacote produzido
 
