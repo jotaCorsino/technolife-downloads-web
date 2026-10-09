@@ -4,10 +4,10 @@
 
 ## Acompanhamento do desenvolvimento
 
-**Meta de entrega operacional:** 09/10/2026, **até 15h (America/Sao_Paulo)** — disponibilizar o MVP para os técnicos em **`https://suporte.technolife.net.br/links/`**. Pasta pública `links/` a criar no domínio de suporte; implantação ainda condicionada à verificação do cPanel e à autorização de exposição dos arquivos.
+**Meta de entrega operacional:** 09/10/2026, até 15h (America/Sao_Paulo). **Implantação operacional reportada pelo responsável** em `https://suporte.technolife.net.br/links/`: listagem, cópia e download funcionando. A conclusão formal da DEP-001 aguarda validação HTTP de isolamento dos arquivos internos e proteção de `.htaccess`.
 
 **Atualizado em:** 09/10/2026  
-**Fase atual:** DEP-001 — Fase A homologada e PR #4 integrado; Fase B de implantação manual no cPanel em preparação.
+**Fase atual:** DEP-001 — publicada e funcionando conforme testes do responsável; verificações finais de segurança pendentes.
 **Etapas homologadas:** INIT-001, BOOT-001, SCAN-001, UI-001 e QA-001. PR #3 integrado em 09/10/2026.
 
 | Ordem | ID | Etapa | Status |
@@ -17,11 +17,11 @@
 | 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🟢 Concluído |
 | 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | 🟢 Concluído |
 | 4 | **[QA-001](tasks/QA-001-VALIDACAO-MVP.md)** | Testes funcionais e validações de segurança | 🟢 Concluído |
-| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | 🟡 Fase A aprovada; Fase B em preparação |
+| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | 🔵 Operacional — verificação final pendente |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** iniciar a Fase B manual no cPanel: confirmar document root de `suporte.technolife.net.br` e local privado fora de todas as raízes web; depois configurar os pacotes. **Não publicar o catálogo antes de confirmar a publicabilidade dos arquivos.** Prazo-alvo: 15h de hoje.
+**Próxima ação:** após confirmação do responsável de que a página lista arquivos, copia links e faz downloads, testar HTTP 403/404 para `/downloads/.htaccess` e código privado; conferir integridade do HESK. Registrar o resultado para concluir DEP-001. O responsável autorizou a exposição dos arquivos atuais e futuros, exceto dotfiles como `.htaccess`.
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
