@@ -1,6 +1,6 @@
 # SCAN-001 — Leitor PHP automático da pasta de downloads
 
-**Estado:** AGUARDANDO_HOMOLOGACAO em 09/10/2026 — implementação e testes locais concluídos; revisão humana pendente.
+**Estado:** CONCLUIDA — 🟢 homologada em 09/10/2026, integrada à `main` pelo PR #1.
 **Etapa:** primeira funcionalidade do MVP, após BOOT-001.
 **Agente:** Codex, trabalhando na pasta local `technolife-downloads-web`.
 
@@ -74,3 +74,16 @@ Implementar um **leitor PHP pequeno, testável e somente leitura** que consulte 
 6. Limitações e riscos restantes, inclusive diferenças entre ambiente local e cPanel.
 
 **Gate:** após implementar, testar e apresentar evidências, **parar em AGUARDANDO_HOMOLOGACAO**. Não iniciar UI-001 nem implantar no servidor.
+
+## Homologação final — 09/10/2026
+
+**Resultado:** 🟢 APROVADO pelo responsável humano, após a correção pontual de diretório vazio na revisão do PR #1.
+
+- **Pull Request:** [#1 — SCAN-001](https://github.com/jotaCorsino/technolife-downloads-web/pull/1) — integrado à `main`.
+- **Commit de correção homologado:** `4b4427eee980cf5b120f0d6f7e0aa062e9a9787b`.
+- **Merge na `main`:** `2a2a65b5b3a56358c2866ea17c32b2170fc14262`.
+- **Testes reportados pelo Codex:** análise de sintaxe dos dois arquivos e 9 grupos de verificações funcionais aprovados; não havia status de CI no GitHub.
+- **Evidência técnica:** filtros de dotfiles, diretórios e symlinks, nomes Unicode e URLs codificadas, leitura dinâmica e exceção para diretório vazio.
+- **Pendências não bloqueantes para o gate de publicação:** validar PHP/permissões do cPanel e avaliar exposição pública de todos os nomes e URLs.
+
+**Próxima etapa autorizada:** [UI-001 — Interface do catálogo](UI-001-INTERFACE-CATALOGO.md). Esta homologação **não autoriza implantação**.
