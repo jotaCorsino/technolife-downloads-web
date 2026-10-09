@@ -7,7 +7,7 @@
 | Ordem | ID | Entrega | Estado |
 | --- | --- | --- | --- |
 | 0 | INIT-001 | Fundação documental e revisão de escopo | Aguardando revisão |
-| 1 | BOOT-001 | Vincular a pasta local ao GitHub com segurança | Planejada |
+| 1 | BOOT-001 | Vincular a pasta local ao GitHub com segurança | Autorizada — aguardando execução |
 | 2 | SCAN-001 | Leitor PHP da pasta de downloads, filtro e URLs seguras | Planejada |
 | 3 | UI-001 | Página responsiva, busca e botão de copiar | Planejada |
 | 4 | QA-001 | Testes de nomes/URLs, exclusões, atualização e estados de erro | Planejada |
