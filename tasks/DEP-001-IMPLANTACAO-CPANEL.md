@@ -1,6 +1,6 @@
 # DEP-001 — Implantação controlada da Central de Links
 
-**Estado:** FASE_B_OPERACIONAL_AGUARDANDO_HESK em 09/10/2026 — 🔵 produção funcional confirmada pelo responsável e HTTP de segurança aprovado (200/403/404); falta apenas confirmar integridade do HESK para homologação final. Fase A homologada pelo PR #4, merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`.
+**Estado:** CONCLUIDO_HOMOLOGADO em 09/10/2026 — 🟢 catálogo funcional, segurança HTTP verificada e HESK funcionando normalmente, com aceite final explícito do responsável. Fase A homologada pelo PR #4, merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`.
 **Prazo operacional solicitado:** 09/10/2026, **até 15h (America/Sao_Paulo)**.
 **Objetivo:** disponibilizar a Central de Links para uso dos técnicos da Technolife na hospedagem existente.
 **Destino definido pelo responsável (09/10/2026):** `https://suporte.technolife.net.br/links/` (também acessível digitando `https://suporte.technolife.net.br/links`, mediante resolução ou redirecionamento normal do servidor).
@@ -21,7 +21,7 @@
 6. Produzir instruções objetivas para implantação **manual pelo cPanel File Manager**: pastas a criar, conteúdo exato a enviar a cada pasta, configuração no contexto PHP HTTP, verificações, rollback. Nunca registrar os caminhos físicos reais do servidor no repositório público.
 7. Registrar commits, testes e um PR apenas da preparação; interromper antes de qualquer ação remota ou publicação.
 
-### Fase B — Implantação no cPanel (🟡 iniciada pelo responsável, com orientação)
+### Fase B — Implantação no cPanel (🟢 concluída e homologada)
 
 1. O responsável acessa o cPanel do servidor da empresa, confirma a raiz web do domínio e cria a subpasta **`links/`** nessa raiz.
 2. Após aprovação do pacote, envia cada conjunto de arquivos ao destino correto **usando o File Manager**, sem colocar código privado, `.git/`, `docs/` ou `tests/` dentro da webroot.
@@ -112,4 +112,8 @@ O responsável executou pelo terminal cPanel (conta da empresa) a verificação 
 - Após a correção, o responsável **confirmou pessoalmente** que a página aparece, lista os arquivos reais de `/downloads/`, copia os links completos e abre/baixa os arquivos como planejado.
 - A publicabilidade dos arquivos atuais e futuros foi **explicitamente autorizada**, com exclusão do arquivo `.htaccess`; o scanner não lista dotfiles.
 
-**Testes HTTP reportados pelo responsável no Terminal do cPanel em 09/10/2026:** `/links/` → **200**; `/downloads/.htaccess` → **403**; `/technolife-links-private/config.php` → **404**; `/technolife-links-private/DownloadScanner.php` → **404**. A saída foi examinada nesta conversa; não foi um teste executado diretamente por este assistente. **Ainda pendente:** comprovar login/consulta do HESK após o deploy para fechar a homologação operacional. Não publicar conteúdos internos ou caminhos absolutos operacionais no Git público.
+**Testes HTTP reportados pelo responsável no Terminal do cPanel em 09/10/2026:** `/links/` → **200**; `/downloads/.htaccess` → **403**; `/technolife-links-private/config.php` → **404**; `/technolife-links-private/DownloadScanner.php` → **404**. A saída foi examinada nesta conversa; não foi um teste executado diretamente por este assistente. **HESK:** o responsável confirmou que tudo continua funcionando normalmente após o deploy e autorizou o encerramento da DEP-001 em 09/10/2026. Não publicar conteúdos internos ou caminhos absolutos operacionais no Git público.
+
+## Encerramento — 09/10/2026
+
+**CONCLUÍDO E HOMOLOGADO.** Catálogo público funcionando com busca, links copiáveis e downloads; testes HTTP dos arquivos protegidos aprovados; HESK validado pelo responsável. Sem pendências do escopo MVP. Rollback possível pela desativação do leitor em `links/index.php`, sem interferir na pasta de downloads.
