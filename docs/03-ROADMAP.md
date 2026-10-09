@@ -6,12 +6,14 @@
 
 | Ordem | ID | Entrega | Estado |
 | --- | --- | --- | --- |
-| 0 | INIT-001 | Fundação documental e revisão de escopo | Aguardando revisão |
-| 1 | BOOT-001 | Vincular a pasta local ao GitHub com segurança | Aguardando homologação — execução técnica concluída |
-| 2 | SCAN-001 | Leitor PHP da pasta de downloads, filtro e URLs seguras | Planejada |
-| 3 | UI-001 | Página responsiva, busca e botão de copiar | Planejada |
-| 4 | QA-001 | Testes de nomes/URLs, exclusões, atualização e estados de erro | Planejada |
-| 5 | DEP-001 | Validar exposição pública e implantar no cPanel | Planejada |
+| 0 | INIT-001 | Fundação documental e revisão de escopo | 🔵 Aguardando revisão |
+| 1 | BOOT-001 | Vincular a pasta local ao GitHub com segurança | 🔵 Aguardando homologação — execução técnica concluída |
+| 2 | SCAN-001 | Leitor PHP da pasta de downloads, filtro e URLs seguras | ⚪ Não iniciado |
+| 3 | UI-001 | Página responsiva, busca e botão de copiar | ⚪ Não iniciado |
+| 4 | QA-001 | Testes de nomes/URLs, exclusões, atualização e estados de erro | ⚪ Não iniciado |
+| 5 | DEP-001 | Validar exposição pública e implantar no cPanel | ⚪ Não iniciado |
+
+**Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação/aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado. A conclusão técnica não equivale à homologação humana.
 
 Não há tarefas de CRUD, sessão STAFF, cadastro de links nem banco de dados. Essas frentes foram **canceladas por simplificação do escopo** antes de qualquer implementação.
 
