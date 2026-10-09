@@ -1,75 +1,81 @@
-# 02 — Arquitetura inicial
+# 02 — Arquitetura — catálogo somente leitura
 
-> Documento de planejamento. Nenhuma integração com a hospedagem ou com o HESK foi testada neste projeto.
+> Arquitetura planejada, ainda não validada no ambiente real.
 
-## Visão em camadas
+## Fluxo
 
 ```text
-Técnico autorizado (navegador)
-          |
-     HTML / CSS / JS
-          |
-    Requisições HTTPS
-          |
-    API pequena em PHP
-      |         |
-  Autorização  Persistência
-    STAFF       compartilhada
-          |
-  Resposta de catálogo
+         Hospedagem
+      /downloads/ (arquivos)
+               |
+     Leitura local de diretório
+               |
+       PHP (somente leitura)
+               |
+    HTML + títulos + URLs HTTPS
+               |
+       Página no navegador
+         |           |
+     Busca JS     Copiar link
 ```
 
-Os executáveis ficam fora desta arquitetura: permanecem hospedados pelo serviço de downloads já existente. O painel mantém apenas referências (URLs), sem copiar, servir ou enviar arquivos.
+Não há banco de dados, endpoint de escrita, cadastro, autenticação nem comunicação com o HESK.
 
-## Frontend
+## Componentes
 
-- HTML semântico, CSS responsivo e JavaScript puro.
-- Tela principal com busca, lista e ações de copiar, adicionar, editar e excluir.
-- Formulário pequeno; estados de carregamento, lista vazia e erro.
-- Sem frameworks nem interface administrativa adicional.
-- Dados obtidos exclusivamente do backend autorizado; não usar `localStorage` como persistência compartilhada.
+**PHP** — camada mínima de servidor para listar os arquivos. Navegadores não têm permissão de consultar diretamente o filesystem do servidor. PHP consulta diretório fixo, aplica filtros e produz dados seguros à renderização.
 
-## Backend
+**HTML/CSS** — exibe os itens em uma única página, responsiva e com identidade visual Technolife.
 
-Uma API PHP pequena deverá oferecer operações de **listagem, inclusão, edição e exclusão**. Os formatos finais dos endpoints serão definidos antes da implementação. A autorização deve ser aplicada **em todas as operações no servidor**, inclusive na leitura.
+**JavaScript** — filtra os itens já carregados e usa Clipboard API (com tratamento de falha) para copiar URLs.
 
-Os registros conterão `id`, `title`, `url` e, se necessário, `created_at` / `updated_at` gerados pelo servidor. Validar tamanho de campos, tratar Unicode e aceitar URLs HTTPS válidas; outras necessidades deverão ser explicitamente justificadas.
+## Fonte de arquivos
 
-## Persistência — decisão pendente de validação
+- Diretório de leitura: `/downloads/` no site de hospedagem, mapeado para **caminho absoluto de filesystem pelo servidor**, não fornecido em query string.
+- A pasta efetiva será confirmada no deploy; não publicar paths privados no repositório.
+- Somente itens diretamente contidos no diretório.
+- Selecionar **arquivos regulares**. Ignorar entradas cujo nome comece com `.` (inclusive `.htaccess`), subdiretórios e links simbólicos.
+- Arquivos adicionados ou removidos aparecem/desaparecem na próxima requisição da página; não é necessário polling em tempo real.
+- Erros de permissão e pasta inexistente devem retornar estado genérico, sem revelar paths ou detalhes internos.
 
-**Candidato preferencial:** SQLite por meio de PDO no PHP, caso a extensão esteja disponível e o ambiente suporte o arquivo de dados com permissões adequadas. O arquivo de banco deve residir **fora da área servida publicamente**.
+## Normalização do nome
 
-Se SQLite não for viável, avaliar armazenamento em arquivo JSON com `flock`, escrita atômica e permissões restritas, ou outra solução mínima compatível. Não escolher por conveniência sem testar persistência e atualizações concorrentes.
+A transformação ocorre **somente na interface**:
 
-Não versionar dados de produção.
+1. Preservar o nome real para URL.
+2. Identificar a extensão final do arquivo (quando houver).
+3. Remover essa extensão para formar o título.
+4. Substituir separadores `-` e `_` por espaços e normalizar espaços repetidos.
+5. Preservar letras, acentos, números e versões relevantes; não forçar mudanças imprecisas de capitalização.
+6. Ordenar por título de forma estável.
 
-## Autenticação e autorização
+Exemplo: `Technolife-RustDesk-Windows.zip` → título `Technolife RustDesk Windows`, extensão `ZIP`, URL final mantida com o nome original.
 
-A preferência é aproveitar a sessão **STAFF** do HESK sem criar contas/senhas próprias. Essa integração **ainda não está comprovada**.
+## Construção de URLs
 
-Antes de implementar o catálogo real, executar prova técnica que confirme:
+O servidor define **uma base HTTPS de downloads autorizada**. Para cada item, concatenar à base o nome de arquivo codificado como segmento de URL (equivalente a `rawurlencode` em PHP). Não usar path físico na URL, não confiar em host/query string escolhidos pelo visitante, nem produzir URLs para caminhos fora da pasta.
 
-1. Como o HESK identifica uma sessão de técnico válida **do lado servidor**.
-2. Como o PHP do painel consegue verificar autenticação e autorização sem confiar em parâmetros ou cookies fornecidos isoladamente pelo navegador.
-3. Como sessões expiradas, logout e usuários não autorizados são tratados.
-4. Como impedir exposição anônima de HTML administrativo, conteúdo sensível e endpoints de API.
-5. Como proteger operações de escrita contra CSRF, inclusive com sessão compartilhada.
+Links devem apontar **diretamente** para os arquivos servidos pela hospedagem. O comportamento ao abrir (download imediato ou apresentação pelo navegador) pode variar conforme cabeçalhos e formato do arquivo.
 
-Se não houver integração segura suportada pelo ambiente, registrar alternativas para decisão humana. **Não considerar acesso restrito resolvido com redirecionamento no JavaScript, ocultação de botões ou simples presença de cookie.**
+## Segurança e limites
 
-## Segurança mínima
+Esta ferramenta **não autentica usuários**. A página publicada será um índice público dos arquivos. Antes do deploy, verificar que todos os nomes e URLs listados são publicáveis; conteúdos confidenciais ou de distribuição restrita não devem estar na origem usada pelo índice público.
 
-- HTTPS para o painel e para links admitidos por padrão.
-- Validação de entradas no backend; URLs de esquemas perigosos (`javascript:`, `data:`, `file:`) rejeitadas.
-- Saída de títulos tratada como texto, sem renderizar HTML arbitrário (proteção contra XSS).
-- Proteção CSRF para ações que alteram estado; consultas e operações com métodos adequados.
-- SQLite com statements preparados, se adotado.
-- Erros sem dados de sessão, credenciais, caminhos internos ou stack traces públicos.
-- Arquivos de dados/configuração e segredos fora do diretório publicamente servido e excluídos do Git.
-- Testes negativos de usuário anônimo e sessão inválida antes de homologar.
+- Nenhuma entrada do usuário determina o diretório consultado.
+- Não processar `..` ou caminhos fornecidos por parâmetros para ler arquivos.
+- Não seguir links simbólicos.
+- Escapar qualquer texto ao gerar HTML; não injetar nomes diretamente em `innerHTML`.
+- Não revelar nomes de dotfiles, stack traces ou filesystem paths.
+- Não fornecer métodos de escrita, exclusão ou upload.
+- Manter páginas e URLs HTTPS.
+- O código fonte público não deve conter segredos nem informações operacionais privadas.
 
-## Implantação
+## Deploy — verificar antes da implantação
 
-Hospedagem PHP/cPanel já disponível, sujeita à verificação de versão PHP, extensões, permissões, roteamento e mecanismo de sessão. Endereço definitivo do painel, organização exata dos diretórios e procedimento de implantação serão definidos após a prova de ambiente.
+- PHP disponível no cPanel.
+- Caminho real da pasta `/downloads/` acessível em modo leitura ao processo PHP.
+- Base HTTPS correta para links, URL da página e permissões de acesso.
+- Comportamento de arquivos contendo espaços, acentos e caracteres especiais.
+- Conteúdo do diretório revisado para publicação pública.
 
-Este repositório é público: usar exemplos fictícios, variáveis e referências genéricas. Não publicar configurações operacionais sensíveis nem o catálogo real.
+A solução não depende de listagem automática do Apache/LiteSpeed nem de habilitar `Indexes`: a leitura é feita localmente pelo PHP.
