@@ -2,13 +2,13 @@
 
 ## Estado em 09/10/2026
 
-**Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. Fundação documental atualizada. Implementação funcional não iniciada.
+**Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. **Fundação e bootstrap homologados em 09/10/2026. Próxima tarefa autorizada: SCAN-001 (implementação ainda não iniciada).**
 
 | Ordem | ID | Entrega | Estado |
 | --- | --- | --- | --- |
-| 0 | INIT-001 | Fundação documental e revisão de escopo | 🔵 Aguardando revisão |
-| 1 | BOOT-001 | Vincular a pasta local ao GitHub com segurança | 🔵 Aguardando homologação — execução técnica concluída |
-| 2 | SCAN-001 | Leitor PHP da pasta de downloads, filtro e URLs seguras | ⚪ Não iniciado |
+| 0 | INIT-001 | Fundação documental e revisão de escopo | 🟢 Concluído — aprovado |
+| 1 | BOOT-001 | Vincular a pasta local ao GitHub com segurança | 🟢 Concluído — homologado |
+| 2 | [SCAN-001](../tasks/SCAN-001-LEITOR-DOWNLOADS.md) | Leitor PHP da pasta de downloads, filtro e URLs seguras | ⚪ Autorizada — não iniciada |
 | 3 | UI-001 | Página responsiva, busca e botão de copiar | ⚪ Não iniciado |
 | 4 | QA-001 | Testes de nomes/URLs, exclusões, atualização e estados de erro | ⚪ Não iniciado |
 | 5 | DEP-001 | Validar exposição pública e implantar no cPanel | ⚪ Não iniciado |
