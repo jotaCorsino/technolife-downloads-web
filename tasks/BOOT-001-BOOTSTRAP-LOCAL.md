@@ -4,46 +4,43 @@
 
 ## Identidade
 
-- **Produto:** Technolife — Central de Links
+- **Projeto:** Technolife — Central de Links
 - **Repositório:** https://github.com/jotaCorsino/technolife-downloads-web
-- **Branch principal esperada:** `main`
+- **Branch principal:** `main`
 - **Pasta local esperada:** `technolife-downloads-web`
 - **Agente implementador:** Codex
 
 ## Objetivo
 
-Transformar a pasta local já criada pelo responsável humano em working copy segura do repositório remoto que contém a documentação inicial do projeto.
+Vincular com segurança a pasta local já criada pelo responsável humano ao repositório remoto com a documentação atualizada do projeto.
 
-## Incluído
+## Procedimento
 
-1. Inspecionar o caminho atual e confirmar que a pasta corresponde a este projeto.
-2. Verificar se já existe repositório Git. Inicializar apenas se não existir.
-3. Verificar se o remoto `origin` existe e se aponta para a URL correta.
-4. Buscar estado remoto, sincronizar `main` sem destruir arquivos locais únicos ou histórico divergente.
-5. Confirmar que README, `docs/` e `tasks/` estão presentes.
-6. Retornar evidências de pasta, `origin`, branch, HEAD, `git status` e divergências; parar.
+1. Confirmar caminho da pasta local e se ela é realmente `technolife-downloads-web`.
+2. Inspecionar Git existente; inicializar somente se necessário.
+3. Confirmar ou configurar `origin` com a URL correta.
+4. Buscar e sincronizar `main` sem apagar arquivos ou histórico único.
+5. Confirmar README, `docs/` e `tasks/` disponíveis localmente.
+6. Reportar pasta, remoto, branch, HEAD, `git status` e conflitos; **parar**.
 
 ## Fora do escopo
 
-Implementação de HTML/CSS/JS/PHP, testes funcionais, alterações em arquitetura, instalação de dependências, publicação de site, exclusão/renomeação de arquivos do usuário e criação de funcionalidade.
+Não criar interface, leitor PHP, banco, login, autenticação, cadastros, uploads ou qualquer funcionalidade do produto. Não instalar dependências nem implantar na hospedagem.
 
 ## Segurança e conflitos
 
-Se houver arquivos que conflitem, remoto incorreto, histórico divergente ou necessidade de `reset --hard`/`force push`, **interromper e reportar**; não resolver silenciosamente. Não versionar segredos nem dados locais reais.
+Se encontrar conteúdo local conflitante, histórico divergente, remoto diferente ou necessidade de reset/force, interromper e solicitar orientação. Não executar ação destrutiva nem versionar segredos.
 
 ## Critérios de aceite
 
-- [ ] Diretório local e repositório remoto correspondem ao projeto certo.
-- [ ] `origin` aponta para `jotaCorsino/technolife-downloads-web`.
-- [ ] `main` remota e working copy estão sincronizadas com segurança.
-- [ ] README e documentação da fundação foram obtidos.
-- [ ] Branch, HEAD e `git status` foram informados.
-- [ ] Nenhuma funcionalidade foi implementada e nenhuma ação destrutiva executada.
+- [ ] Pasta e repositório correspondem ao mesmo projeto.
+- [ ] `origin` correto e `main` sincronizada.
+- [ ] Documentação atualizada foi recebida.
+- [ ] `git status`, branch e HEAD apresentados.
+- [ ] Nenhuma funcionalidade implementada.
 
-## Evidências esperadas
+## Evidências
 
-Caminho completo da pasta (sem expor informações sensíveis), estado prévio do Git, URL de `origin`, branch atual, SHA de HEAD, `git status`, arquivos documentais presentes, eventuais bloqueios. Após entregar evidências, **parar para análise e homologação humana**.
+Caminho, estado anterior do Git, remoto, branch, SHA de HEAD, status e documentos presentes. Retornar essas informações para a homologação humana e não iniciar a próxima tarefa.
 
-## Próximo passo
-
-Somente após esse gate o planejamento poderá preparar a primeira tarefa funcional (UI-001) para autorização.
+**Próxima tarefa funcional prevista após homologação:** SCAN-001 — leitura do diretório de downloads com PHP.
