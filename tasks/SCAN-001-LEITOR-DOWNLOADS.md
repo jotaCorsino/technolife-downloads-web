@@ -1,6 +1,6 @@
 # SCAN-001 — Leitor PHP automático da pasta de downloads
 
-**Estado:** AUTORIZADA em 09/10/2026 — implementação ainda não iniciada.
+**Estado:** AGUARDANDO_HOMOLOGACAO em 09/10/2026 — implementação e testes locais concluídos; revisão humana pendente.
 **Etapa:** primeira funcionalidade do MVP, após BOOT-001.
 **Agente:** Codex, trabalhando na pasta local `technolife-downloads-web`.
 
