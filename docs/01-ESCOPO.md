@@ -2,45 +2,50 @@
 
 ## Propósito
 
-Centralizar links de instaladores, programas e ferramentas usados pela equipe de suporte, reduzindo buscas manuais e padronizando o compartilhamento com clientes.
+Oferecer um índice automático e pesquisável dos arquivos de download hospedados pela Technolife, para que os técnicos encontrem e copiem o endereço HTTPS correto sem cadastrá-lo manualmente.
 
-## Usuários
+## Origem dos dados
 
-Técnicos da Technolife previamente autorizados. Clientes recebem URLs diretas de arquivos e **não acessam o painel**.
+**Fonte única:** arquivos existentes diretamente no diretório `/downloads/` da hospedagem.
 
-## Fluxo principal
+- O PHP consulta o diretório no momento da requisição.
+- Arquivos adicionados/removidos são refletidos na próxima atualização ou reabertura da página.
+- O nome de cada arquivo é usado para construir o título visível e a URL direta; o arquivo físico não é modificado.
+- O catálogo não mantém banco ou cópia própria dos registros.
+- Na primeira versão, não percorre subdiretórios.
 
-O técnico abre o painel autenticado, pesquisa um programa por título, identifica o registro e copia o link. O endereço copiado pode ser enviado em outro canal. Quando necessário, o técnico cadastra um título e uma URL; o registro fica disponível para os demais usuários autorizados após salvar.
+## Interface
 
-## Dentro do MVP
+Página única com cabeçalho, campo de pesquisa, listagem e ações de **Copiar link** e **Abrir/Baixar**. Títulos derivados dos nomes, extensão/formato identificável e feedback simples. Layout responsivo e visual coerente com a Technolife.
 
-| ID | Requisito | Critério verificável |
+## Requisitos e critérios verificáveis
+
+| ID | Requisito | Aceite |
 | --- | --- | --- |
-| MVP-01 | Listagem | Mostra registros salvos e estado vazio compreensível |
-| MVP-02 | Pesquisa | Filtra por título sem recarregar a página; não diferencia maiúsculas/minúsculas |
-| MVP-03 | Copiar link | Copia a URL integral e exibe feedback, inclusive em caso de falha |
-| MVP-04 | Cadastro | Exige título e URL válida; registro salvo reaparece ao consultar novamente |
-| MVP-05 | Edição | Altera título/URL de registro existente sem criar duplicata por engano |
-| MVP-06 | Exclusão | Pede confirmação e remove apenas o registro indicado |
-| MVP-07 | Compartilhamento | Modificações feitas por um técnico ficam disponíveis aos outros |
-| MVP-08 | Proteção | Visitantes não autorizados não acessam dados nem operações do backend |
-| MVP-09 | Responsividade | Painel utilizável em desktop e dispositivo móvel |
+| MVP-01 | Ler diretório | A página lista arquivos comuns diretamente em `/downloads/` sem cadastro |
+| MVP-02 | Ignorar arquivos não exibíveis | `.htaccess`, dotfiles, diretórios e symlinks não aparecem |
+| MVP-03 | Normalizar títulos | `Technolife-RustDesk-Windows.zip` é exibido como `Technolife RustDesk Windows`, mantendo a extensão identificável |
+| MVP-04 | URL correta | Cada item gera link HTTPS absoluto para o próprio arquivo, com o nome devidamente codificado |
+| MVP-05 | Pesquisa | Filtra instantaneamente por nome/título, ignorando diferença entre maiúsculas/minúsculas |
+| MVP-06 | Cópia | Copia a URL completa para o clipboard e informa o resultado |
+| MVP-07 | Acesso ao download | Um clique abre a URL direta, sem passar por upload/gerenciador do painel |
+| MVP-08 | Atualização | Incluir/remover arquivo da pasta reflete-se após recarregar a página |
+| MVP-09 | Layout e estados | Página responsiva e mensagens legíveis para pasta vazia, erro de leitura e ausência de resultados |
 
-## Fora do MVP
+## Fora de escopo
 
-Upload de instaladores, gestão de arquivos físicos, hospedagem de executáveis, links encurtados, monitoramento de downloads, rastreamento de clientes, métricas de acesso, relatórios, categorias, etiquetas, permissões granulares por técnico e um login independente.
+- Cadastro, edição, exclusão ou upload de arquivos pelo painel.
+- Formulários de administração, autenticação própria, integração HESK ou permissões por usuário.
+- Banco de dados, JSON de cadastro, sincronização periódica ou tarefas agendadas.
+- Categorização manual, dashboards, monitoramento de download e encurtador de links.
+- Navegação recursiva em subpastas.
 
-## Regras funcionais iniciais
+## Segurança e publicação
 
-- Um registro contém **identificador interno**, **título** e **URL**, além de metadados técnicos mínimos para manutenção quando necessários.
-- O formulário pede somente título e URL.
-- As alterações persistem no servidor, nunca exclusivamente no armazenamento local do navegador.
-- O link compartilhado deve preservar a URL cadastrada; o painel não modifica nem redireciona o arquivo.
-- Mensagens de sucesso e erro são claras e discretas.
-- Não expor dados do catálogo antes da autorização do usuário.
+Não haverá login. Portanto, **qualquer pessoa com acesso à URL da Central poderá visualizar a relação de nomes e links**. A versão pública deve ser liberada somente após comprovar que esses dados podem ser exibidos sem restrições. A existência de um link direto não implica que o arquivo deva necessariamente aparecer num índice público: essa liberação deve ser deliberada.
 
-## Critério de conclusão do produto
+Exibir apenas arquivos regulares não ocultos, não seguir symlinks e não revelar caminhos físicos. O nome de arquivo deve ser tratado como dado não confiável ao ser renderizado.
 
-O MVP só pode ser homologado após demonstração funcional da pesquisa, cópia, cadastro, edição, exclusão, persistência entre sessões e bloqueio efetivo de acesso não autorizado. Os testes devem contemplar entradas inválidas, tentativas anônimas de consulta e alteração, e funcionamento em dispositivo móvel.
+## Critério de conclusão
 
-A aceitação funcional cabe ao responsável humano; testes técnicos isolados não equivalem à homologação.
+Demonstrar pesquisa e cópia, correta formação de URL (inclusive nomes com espaços/caracteres especiais), abertura de downloads, alteração automática da lista mediante inclusão/remoção de arquivos, exclusão dos dotfiles e tratamento seguro de erros. Confirmar que todos os itens exibidos podem ser listados publicamente. A homologação final pertence ao responsável humano.
