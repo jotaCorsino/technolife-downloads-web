@@ -1,6 +1,6 @@
 # BOOT-001 — Bootstrap local seguro
 
-**Estado:** AUTORIZADA em 09/10/2026 — primeira tarefa de implementação, sem funcionalidade.
+**Estado:** AGUARDANDO_HOMOLOGACAO em 09/10/2026 — execução técnica relatada como concluída, sem funcionalidade.
 
 ## Identidade
 
@@ -44,3 +44,18 @@ Se encontrar conteúdo local conflitante, histórico divergente, remoto diferent
 Caminho, estado anterior do Git, remoto, branch, SHA de HEAD, status e documentos presentes. Retornar essas informações para a homologação humana e não iniciar a próxima tarefa.
 
 **Próxima tarefa funcional prevista após homologação:** SCAN-001 — leitura do diretório de downloads com PHP.
+
+## Relatório de execução — 09/10/2026
+
+O Codex reportou que o bloqueio inicial foi causado por `.git` apresentado como `tmpfs` somente leitura no sandbox. Em execução autorizada fora do sandbox, verificou que a pasta original estava vazia e gravável, e realizou o clone diretamente nela.
+
+- **Pasta:** `~/Projetos/technolife-downloads-web` (preservada).
+- **Origin:** `https://github.com/jotaCorsino/technolife-downloads-web.git`.
+- **Branch/upstream:** `main` / `origin/main`.
+- **HEAD verificado no relatório:** `fc42b74c6b3d4cdea11586dbca383a77a64e8d28`.
+- **Estado:** `working tree clean` e documentação local presente.
+- **Funcionalidades implementadas:** nenhuma.
+
+A execução técnica **atende aos critérios relatados**, mas a decisão de homologação continua com o responsável humano. Depois deste registro documental remoto, a working copy local deverá buscar as atualizações antes de iniciar outra tarefa.
+
+O incidente recorrente foi registrado no [Método ÓRBITA](https://github.com/jotaCorsino/orbita-development-model/blob/main/troubleshooting/001-BOOTSTRAP-GIT-CODEX-SANDBOX-SOMENTE-LEITURA.md). Esse registro não altera as regras do método.
