@@ -4,7 +4,7 @@
 
 **Marco de entrega solicitado às 14h12:** disponibilizar a Central de Links para os técnicos **até 15h de 09/10/2026 (America/Sao_Paulo)**, no endereço **`https://suporte.technolife.net.br/links/`**, criando a subpasta `links/` no domínio. Prazo prioritário, condicionado à segurança do deploy. Ver [DEP-001](../tasks/DEP-001-IMPLANTACAO-CPANEL.md).
 
-**Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. **INIT-001, BOOT-001, SCAN-001, UI-001 e QA-001 homologadas. PR #3 integrado à `main`. A [Fase A da DEP-001](07-PREPARACAO-DEP-001.md) foi homologada e integrada pelo PR #4. **Fase B instalada manualmente; o responsável confirmou operação de listagem, cópia e download após correção de sintaxe do `config.php`.** O inventário público foi autorizado, exceto `.htaccess`. Resta testar externamente o bloqueio de acesso aos arquivos protegidos e a integridade do HESK para concluir a DEP-001.**
+**Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. **INIT-001, BOOT-001, SCAN-001, UI-001 e QA-001 homologadas. PR #3 integrado à `main`. A [Fase A da DEP-001](07-PREPARACAO-DEP-001.md) foi homologada e integrada pelo PR #4. **Fase B instalada manualmente; o responsável confirmou operação de listagem, cópia e download após correção de sintaxe do `config.php`.** O inventário público foi autorizado, exceto `.htaccess`. **Os testes HTTP retornaram `/links/` 200, `.htaccess` 403 e caminhos de leitor/configuração privados 404.** Resta confirmar a integridade operacional do HESK para concluir a DEP-001.
 
 | Ordem | ID | Entrega | Estado |
 | --- | --- | --- | --- |
@@ -13,7 +13,7 @@
 | 2 | [SCAN-001](../tasks/SCAN-001-LEITOR-DOWNLOADS.md) | Leitor PHP da pasta de downloads, filtro e URLs seguras | 🟢 Concluído — homologado, PR #1 integrado |
 | 3 | [UI-001](../tasks/UI-001-INTERFACE-CATALOGO.md) | Página responsiva, busca e botão de copiar | 🟢 Concluído — homologado, PR #2 integrado |
 | 4 | [QA-001](../tasks/QA-001-VALIDACAO-MVP.md) | Testes funcionais, segurança e preparação de implantação | 🟢 Concluído — homologado, PR #3 integrado |
-| 5 | [DEP-001](../tasks/DEP-001-IMPLANTACAO-CPANEL.md) | Validar exposição pública e implantar no cPanel | 🔵 Operacional — checagens finais pendentes |
+| 5 | [DEP-001](../tasks/DEP-001-IMPLANTACAO-CPANEL.md) | Validar exposição pública e implantar no cPanel | 🔵 Operacional — HESK pendente |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação/aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado. A conclusão técnica não equivale à homologação humana.
 
