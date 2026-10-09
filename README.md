@@ -4,10 +4,10 @@
 
 ## Acompanhamento do desenvolvimento
 
-**Meta de entrega operacional:** 09/10/2026, até 15h (America/Sao_Paulo). **Implantação operacional reportada pelo responsável** em `https://suporte.technolife.net.br/links/`: listagem, cópia e download funcionando. A conclusão formal da DEP-001 aguarda validação HTTP de isolamento dos arquivos internos e proteção de `.htaccess`.
+**Meta de entrega operacional:** 09/10/2026, até 15h (America/Sao_Paulo). **Implantação operacional reportada pelo responsável** em `https://suporte.technolife.net.br/links/`: listagem, cópia e download funcionando. Os testes HTTP de acesso e isolamento do código passaram conforme saída do Terminal do cPanel. Resta conferir que o HESK permanece funcional para encerrar formalmente a DEP-001.
 
 **Atualizado em:** 09/10/2026  
-**Fase atual:** DEP-001 — publicada e funcionando conforme testes do responsável; verificações finais de segurança pendentes.
+**Fase atual:** DEP-001 — site operacional e testes HTTP de segurança aprovados; conferência final de HESK pendente.
 **Etapas homologadas:** INIT-001, BOOT-001, SCAN-001, UI-001 e QA-001. PR #3 integrado em 09/10/2026.
 
 | Ordem | ID | Etapa | Status |
@@ -17,11 +17,11 @@
 | 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🟢 Concluído |
 | 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | 🟢 Concluído |
 | 4 | **[QA-001](tasks/QA-001-VALIDACAO-MVP.md)** | Testes funcionais e validações de segurança | 🟢 Concluído |
-| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | 🔵 Operacional — verificação final pendente |
+| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | 🔵 Operacional — HESK pendente |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** após confirmação do responsável de que a página lista arquivos, copia links e faz downloads, testar HTTP 403/404 para `/downloads/.htaccess` e código privado; conferir integridade do HESK. Registrar o resultado para concluir DEP-001. O responsável autorizou a exposição dos arquivos atuais e futuros, exceto dotfiles como `.htaccess`.
+**Próxima ação:** confirmar que o HESK continua funcionando (login e consultas de chamados). A página `/links/` responde HTTP 200 e os testes HTTP de `.htaccess` (403) e caminho do código privado (404) passaram. O responsável autorizou a exposição dos arquivos atuais e futuros, com exclusão de `.htaccess`.
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
