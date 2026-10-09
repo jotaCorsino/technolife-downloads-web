@@ -5,22 +5,21 @@
 ## Acompanhamento do desenvolvimento
 
 **Atualizado em:** 09/10/2026  
-**Fase atual:** UI-001 — implementada, aguardando homologação.
-
-**Etapas homologadas:** INIT-001, BOOT-001 e SCAN-001. PR #1 integrado em 09/10/2026.
+**Fase atual:** QA-001 — autorizada, aguardando execução.  
+**Etapas homologadas:** INIT-001, BOOT-001, SCAN-001 e UI-001. PR #2 integrado em 09/10/2026.
 
 | Ordem | ID | Etapa | Status |
 | --- | --- | --- | --- |
 | 0 | **INIT-001** | Fundação documental e definição do escopo | 🟢 Concluído |
 | 1 | **[BOOT-001](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)** | Preparação e sincronização do ambiente local | 🟢 Concluído |
 | 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🟢 Concluído |
-| 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | 🔵 Aguardando homologação |
-| 4 | **QA-001** | Testes funcionais e validações de segurança | ⚪ Não iniciado |
+| 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | 🟢 Concluído |
+| 4 | **[QA-001](tasks/QA-001-VALIDACAO-MVP.md)** | Testes funcionais e validações de segurança | ⚪ Autorizada — não iniciada |
 | 5 | **DEP-001** | Implantação e homologação final | ⚪ Não iniciado |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** revisar as evidências da [UI-001](tasks/UI-001-INTERFACE-CATALOGO.md) e homologar ou solicitar correções. Não fazer deploy nem iniciar a QA-001 automaticamente.
+**Próxima ação:** atualizar a `main` local após o merge do PR #2 e executar exclusivamente a [QA-001](tasks/QA-001-VALIDACAO-MVP.md) em branch própria. Ainda não realizar deploy.
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
@@ -112,6 +111,7 @@ Não há dependências de terceiros nem build. Os links **Abrir / baixar** usam 
 - [BOOT-001 — Bootstrap local seguro](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)
 - [SCAN-001 — Leitor PHP automático](tasks/SCAN-001-LEITOR-DOWNLOADS.md)
 - [UI-001 — Interface do catálogo](tasks/UI-001-INTERFACE-CATALOGO.md)
+- [QA-001 — Validação do MVP](tasks/QA-001-VALIDACAO-MVP.md)
 
 ## Método ÓRBITA
 
