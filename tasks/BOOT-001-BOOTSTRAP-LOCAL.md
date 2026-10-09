@@ -1,6 +1,6 @@
 # BOOT-001 — Bootstrap local seguro
 
-**Estado:** PLANEJADA — primeira tarefa de implementação, sem funcionalidade.
+**Estado:** AUTORIZADA em 09/10/2026 — primeira tarefa de implementação, sem funcionalidade.
 
 ## Identidade
 
