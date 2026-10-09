@@ -5,21 +5,21 @@
 ## Acompanhamento do desenvolvimento
 
 **Atualizado em:** 09/10/2026  
-**Fase atual:** SCAN-001 — implementada e em validação, aguardando homologação.
-**Fundação e bootstrap:** homologados em 09/10/2026.
+**Fase atual:** UI-001 — autorizada, aguardando implementação.  
+**Etapas homologadas:** INIT-001, BOOT-001 e SCAN-001. PR #1 integrado em 09/10/2026.
 
 | Ordem | ID | Etapa | Status |
 | --- | --- | --- | --- |
 | 0 | **INIT-001** | Fundação documental e definição do escopo | 🟢 Concluído |
 | 1 | **[BOOT-001](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)** | Preparação e sincronização do ambiente local | 🟢 Concluído |
-| 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🔵 Aguardando homologação |
-| 3 | **UI-001** | Interface responsiva, pesquisa e cópia de links | ⚪ Não iniciado |
+| 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🟢 Concluído |
+| 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | ⚪ Autorizada — não iniciada |
 | 4 | **QA-001** | Testes funcionais e validações de segurança | ⚪ Não iniciado |
 | 5 | **DEP-001** | Implantação e homologação final | ⚪ Não iniciado |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** revisar as evidências da SCAN-001 e homologar ou solicitar correções. A UI-001 permanece não autorizada.
+**Próxima ação:** sincronizar a `main` após o merge do PR #1 e executar exclusivamente a [UI-001](tasks/UI-001-INTERFACE-CATALOGO.md) em branch própria. Não fazer deploy nem iniciar a QA-001 automaticamente.
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
@@ -82,6 +82,7 @@ Os arquivos exibidos são gerenciados na hospedagem, fora da Central de Links.
 - [Decisões e riscos](docs/05-DECISOES-E-RISCOS.md)
 - [BOOT-001 — Bootstrap local seguro](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)
 - [SCAN-001 — Leitor PHP automático](tasks/SCAN-001-LEITOR-DOWNLOADS.md)
+- [UI-001 — Interface do catálogo](tasks/UI-001-INTERFACE-CATALOGO.md)
 
 ## Método ÓRBITA
 
