@@ -3,26 +3,96 @@
 declare(strict_types=1);
 
 use Technolife\Downloads\DownloadScanner;
-use Technolife\Downloads\DownloadScanException;
 
-require_once __DIR__ . '/../src/DownloadScanner.php';
+// Set only after confirming that the resulting directory is outside every webroot.
+// 0 keeps a package without server configuration closed by default.
+const PRIVATE_PARENT_LEVELS = 0;
 
 function escape(string $value): string
 {
     return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-$directory = getenv('TECHNOLIFE_DOWNLOADS_DIR');
-$baseUrl = getenv('TECHNOLIFE_DOWNLOADS_BASE_URL');
+function privateDirectory(): ?string
+{
+    $fromEnvironment = getenv('TECHNOLIFE_LINKS_PRIVATE_DIR');
+    if (is_string($fromEnvironment) && $fromEnvironment !== '') {
+        return $fromEnvironment;
+    }
+
+    if (PRIVATE_PARENT_LEVELS < 2) {
+        return null;
+    }
+
+    return dirname(__DIR__, PRIVATE_PARENT_LEVELS) . '/technolife-links-private';
+}
+
+/** @return array{0: ?string, 1: ?string} */
+function downloadConfiguration(string $privateDirectory): array
+{
+    $directory = getenv('TECHNOLIFE_DOWNLOADS_DIR');
+    $baseUrl = getenv('TECHNOLIFE_DOWNLOADS_BASE_URL');
+
+    if (is_string($directory) && $directory !== '' && is_string($baseUrl) && $baseUrl !== '') {
+        return [$directory, $baseUrl];
+    }
+
+    // A partial environment configuration is an error, not a reason to mix sources.
+    if (($directory !== false && $directory !== '') || ($baseUrl !== false && $baseUrl !== '')) {
+        return [null, null];
+    }
+
+    $configFile = $privateDirectory . '/config.php';
+    if (!@is_file($configFile)) {
+        return [null, null];
+    }
+
+    try {
+        $config = @include $configFile;
+    } catch (Throwable) {
+        return [null, null];
+    }
+
+    if (!is_array($config)) {
+        return [null, null];
+    }
+
+    return [
+        is_string($config['downloads_dir'] ?? null) ? $config['downloads_dir'] : null,
+        is_string($config['downloads_base_url'] ?? null) ? $config['downloads_base_url'] : null,
+    ];
+}
+
+function privateDirectoryIsSafe(string $directory): bool
+{
+    $private = @realpath($directory);
+    $documentRoot = $_SERVER['DOCUMENT_ROOT'] ?? '';
+    $webroot = @realpath(is_string($documentRoot) && $documentRoot !== '' ? $documentRoot : __DIR__);
+
+    return $private !== false
+        && $webroot !== false
+        && $private !== $webroot
+        && !str_starts_with($private, rtrim($webroot, '/') . '/')
+        // cPanel may place this domain below public_html, which can itself serve another domain.
+        && preg_match('~(?:^|/)public_html(?:/|$)~', $private) !== 1;
+}
+
 $downloads = [];
 $loadFailed = true;
+$private = privateDirectory();
 
-if (is_string($directory) && $directory !== '' && is_string($baseUrl) && $baseUrl !== '') {
-    try {
-        $downloads = DownloadScanner::scan($directory, $baseUrl);
-        $loadFailed = false;
-    } catch (DownloadScanException $error) {
-        // Configuration and filesystem details must never appear in the page.
+if ($private !== null && privateDirectoryIsSafe($private)) {
+    [$directory, $baseUrl] = downloadConfiguration($private);
+    $scannerFile = $private . '/DownloadScanner.php';
+
+    if ($directory !== null && $directory !== '' && $baseUrl !== null && $baseUrl !== '' && @is_file($scannerFile)) {
+        try {
+            @require_once $scannerFile;
+            $downloads = DownloadScanner::scan($directory, $baseUrl);
+            $loadFailed = false;
+        } catch (Throwable) {
+            // Never expose configuration, filesystem paths or internal errors in HTML.
+        }
     }
 }
 

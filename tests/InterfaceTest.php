@@ -9,18 +9,11 @@ function check(bool $condition, string $message): void
     }
 }
 
-function renderPage(?string $directory, ?string $baseUrl): string
+/** @param array<string, string> $environment */
+function runPage(string $entryPoint, array $environment): string
 {
-    $environment = [];
-    if ($directory !== null) {
-        $environment['TECHNOLIFE_DOWNLOADS_DIR'] = $directory;
-    }
-    if ($baseUrl !== null) {
-        $environment['TECHNOLIFE_DOWNLOADS_BASE_URL'] = $baseUrl;
-    }
-
     $process = proc_open(
-        [PHP_BINARY, __DIR__ . '/../public/index.php'],
+        [PHP_BINARY, $entryPoint],
         [1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
         $pipes,
         null,
@@ -34,6 +27,19 @@ function renderPage(?string $directory, ?string $baseUrl): string
     check(proc_close($process) === 0, 'A página terminou com erro: ' . $errors);
     check($errors === '', 'A página emitiu warnings: ' . $errors);
     return $html;
+}
+
+function renderPage(?string $directory, ?string $baseUrl): string
+{
+    $environment = ['TECHNOLIFE_LINKS_PRIVATE_DIR' => (string) realpath(__DIR__ . '/../src')];
+    if ($directory !== null) {
+        $environment['TECHNOLIFE_DOWNLOADS_DIR'] = $directory;
+    }
+    if ($baseUrl !== null) {
+        $environment['TECHNOLIFE_DOWNLOADS_BASE_URL'] = $baseUrl;
+    }
+
+    return runPage(__DIR__ . '/../public/index.php', $environment);
 }
 
 function removeTestDirectory(string $directory): void
@@ -98,7 +104,51 @@ try {
     check(str_contains($missing, 'Não foi possível carregar os arquivos'), 'Erro de leitura não controlado');
     check(!str_contains($missing, $fixture), 'Caminho físico exposto no erro');
 
-    echo "PASS: interface PHP — estados, listagem, escape HTML, URL direta, ações por ícones acessíveis e erros controlados.\n";
+    $webroot = $fixture . '/webroot';
+    $links = $webroot . '/links';
+    $private = $fixture . '/technolife-links-private';
+    mkdir($webroot);
+    mkdir($links);
+    mkdir($private);
+    $indexSource = file_get_contents(__DIR__ . '/../public/index.php');
+    check(is_string($indexSource), 'Index original não pôde ser lido');
+    file_put_contents($links . '/index.php', $indexSource);
+    copy(__DIR__ . '/../src/DownloadScanner.php', $private . '/DownloadScanner.php');
+
+    $unconfigured = runPage($links . '/index.php', []);
+    check(str_contains($unconfigured, 'Não foi possível carregar os arquivos'), 'Pacote sem configuração não falhou fechado');
+
+    $configuredIndex = str_replace('const PRIVATE_PARENT_LEVELS = 0;', 'const PRIVATE_PARENT_LEVELS = 2;', $indexSource);
+    check($configuredIndex !== $indexSource, 'Marcador de nível privado ausente');
+    file_put_contents($links . '/index.php', $configuredIndex);
+    $noPrivateConfig = runPage($links . '/index.php', []);
+    check(str_contains($noPrivateConfig, 'Não foi possível carregar os arquivos'), 'Configuração privada ausente não falhou fechado');
+
+    $settings = ['downloads_dir' => $directory, 'downloads_base_url' => 'https://example.invalid/downloads'];
+    file_put_contents($private . '/config.php', "<?php return " . var_export($settings, true) . ";\n");
+    $configured = runPage($links . '/index.php', []);
+    check(str_contains($configured, '3 arquivos disponíveis'), 'Configuração privada fora da webroot não carregou a lista');
+    check(!str_contains($configured, $fixture), 'Caminho privado exposto no HTML');
+
+    $partial = runPage($links . '/index.php', ['TECHNOLIFE_DOWNLOADS_DIR' => $directory]);
+    check(str_contains($partial, 'Não foi possível carregar os arquivos'), 'Configuração parcial do ambiente não falhou fechado');
+
+    $unsafe = $fixture . '/public_html/technolife-links-private';
+    mkdir($fixture . '/public_html');
+    mkdir($unsafe);
+    copy(__DIR__ . '/../src/DownloadScanner.php', $unsafe . '/DownloadScanner.php');
+    $unsafePage = runPage($links . '/index.php', [
+        'TECHNOLIFE_LINKS_PRIVATE_DIR' => $unsafe,
+        'TECHNOLIFE_DOWNLOADS_DIR' => $directory,
+        'TECHNOLIFE_DOWNLOADS_BASE_URL' => 'https://example.invalid/downloads',
+    ]);
+    check(str_contains($unsafePage, 'Não foi possível carregar os arquivos'), 'Leitor sob public_html foi aceito');
+
+    unlink($private . '/DownloadScanner.php');
+    $missingReader = runPage($links . '/index.php', []);
+    check(str_contains($missingReader, 'Não foi possível carregar os arquivos'), 'Leitor privado ausente não falhou fechado');
+
+    echo "PASS: interface PHP — estados, listagem, escape, URLs, configuração privada separada e falhas fechadas.\n";
 } finally {
     removeTestDirectory($fixture);
 }
