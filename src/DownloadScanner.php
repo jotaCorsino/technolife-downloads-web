@@ -22,6 +22,10 @@ final class DownloadScanner
      */
     public static function scan(string $directory, string $baseUrl): array
     {
+        if ($directory === '') {
+            throw new DownloadScanException('Não foi possível ler os downloads.');
+        }
+
         $urlPrefix = self::validatedUrlPrefix($baseUrl);
         $entries = @scandir($directory);
 

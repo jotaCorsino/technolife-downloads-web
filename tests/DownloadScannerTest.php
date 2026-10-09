@@ -31,7 +31,9 @@ function expectScanError(string $directory, string $baseUrl, string $expectedMes
         DownloadScanner::scan($directory, $baseUrl);
     } catch (DownloadScanException $error) {
         expect($error->getMessage() === $expectedMessage, 'Mensagem de erro inesperada');
-        expect(!str_contains($error->getMessage(), $directory), 'Caminho físico exposto');
+        if ($directory !== '') {
+            expect(!str_contains($error->getMessage(), $directory), 'Caminho físico exposto');
+        }
         return;
     }
 
@@ -134,6 +136,7 @@ try {
     expect(!isset(byFilename(DownloadScanner::scan($downloads, 'https://example.invalid/downloads'))['novo_arquivo.txt']), 'Arquivo removido ainda aparece');
     $checks++;
 
+    expectScanError('', 'https://example.invalid/downloads', 'Não foi possível ler os downloads.');
     expectScanError($fixture . '/missing', 'https://example.invalid/downloads', 'Não foi possível ler os downloads.');
     expectScanError($fixture . '/outside.zip', 'https://example.invalid/downloads', 'Não foi possível ler os downloads.');
     $checks++;
