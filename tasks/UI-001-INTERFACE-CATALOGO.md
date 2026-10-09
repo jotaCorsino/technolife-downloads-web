@@ -1,6 +1,6 @@
 # UI-001 — Interface web da Central de Links
 
-**Estado:** AGUARDANDO_HOMOLOGACAO em 09/10/2026 — implementação e testes locais concluídos; revisão humana pendente.
+**Estado:** CONCLUIDA — 🟢 homologada em 09/10/2026 e integrada à `main` pelo PR #2.
 **Pré-requisito:** SCAN-001 homologada e integrada à `main` por meio do PR #1.
 **Agente implementador:** Codex, na working copy local `technolife-downloads-web`.
 **Branch prevista:** `feat/UI-001-interface-catalogo`.
@@ -94,3 +94,16 @@ Esta é a **interface do produto**. Não há banco de dados, autenticação, for
 - Eventuais decisões sobre CSS, scripts e configuração do ambiente; riscos e pendências para QA/DEP.
 
 **Gate:** criar ou atualizar um único PR da UI-001 e parar em **AGUARDANDO_HOMOLOGACAO**. Não realizar merge, deploy ou iniciar QA-001.
+
+## Homologação final — 09/10/2026
+
+**Resultado:** 🟢 APROVADO pelo responsável humano. Após a revisão técnica do PR #2 e o relato de testes da prévia local, a aprovação da UI-001 foi concedida pelo responsável no chat do projeto.
+
+- **Pull Request:** [#2 — UI-001](https://github.com/jotaCorsino/technolife-downloads-web/pull/2) — integrado à `main`.
+- **Commit de implementação homologado:** `336c1812fc7f61bba22c2f5945d220375af4aeef`.
+- **Merge:** `431b58965814f127f8d15e2bb3335c6300172094`.
+- **Relatórios do Codex:** sintaxe PHP/JS, testes de interface PHP/JS, nove grupos da SCAN-001 e prévia local em desktop/360 px passaram. Sem CI publicada; revisão de código realizada no GitHub.
+- **Escopo entregue:** página integrada ao scanner, marca Technolife, pesquisa, URLs diretas, botões de ícone acessíveis, cópia com feedback, responsividade e estados de erro/vazio.
+- **Pendente:** QA de regressão e preparação de ambiente; a homologação **não autoriza deploy público**.
+
+**Próxima tarefa autorizada:** [QA-001 — Validação do MVP](QA-001-VALIDACAO-MVP.md).
