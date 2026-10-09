@@ -2,44 +2,37 @@
 
 ## Estado em 09/10/2026
 
-**Fase atual:** fundação documental publicada, aguardando revisão humana e bootstrap local. **Implementação funcional:** não iniciada.
-
-As etapas seguem o Método ÓRBITA: planejamento → implementação autorizada → testes/evidências → homologação humana → avanço.
+**Escopo simplificado:** catálogo automático, apenas leitura, sem autenticação ou persistência própria. Fundação documental atualizada. Implementação funcional não iniciada.
 
 | Ordem | ID | Entrega | Estado |
 | --- | --- | --- | --- |
-| 0 | INIT-001 | Fundação documental no GitHub | Aguardando revisão |
-| 1 | BOOT-001 | Bootstrap Git seguro na pasta local | Planejada |
-| 2 | UI-001 | Protótipo visual responsivo com dados fictícios | Planejada |
-| 3 | SEC-001 | Prova de autorização STAFF e validação do ambiente PHP | Planejada |
-| 4 | DATA-001 | Definir e validar persistência compartilhada | Planejada |
-| 5 | API-001 | API PHP protegida para CRUD dos links | Planejada |
-| 6 | UI-002 | Integrar interface ao backend (CRUD, busca e cópia) | Planejada |
-| 7 | QA-001 | Testes funcionais, negativos e homologação do MVP | Planejada |
-| 8 | DEP-001 | Implantação controlada e documentação operacional | Planejada |
+| 0 | INIT-001 | Fundação documental e revisão de escopo | Aguardando revisão |
+| 1 | BOOT-001 | Vincular a pasta local ao GitHub com segurança | Planejada |
+| 2 | SCAN-001 | Leitor PHP da pasta de downloads, filtro e URLs seguras | Planejada |
+| 3 | UI-001 | Página responsiva, busca e botão de copiar | Planejada |
+| 4 | QA-001 | Testes de nomes/URLs, exclusões, atualização e estados de erro | Planejada |
+| 5 | DEP-001 | Validar exposição pública e implantar no cPanel | Planejada |
 
-A ordem pode ser ajustada por decisão humana registrada. Nenhuma etapa autoriza automaticamente a seguinte.
+Não há tarefas de CRUD, sessão STAFF, cadastro de links nem banco de dados. Essas frentes foram **canceladas por simplificação do escopo** antes de qualquer implementação.
 
 ## Gates
 
-**G0 — Fundação:** README, escopo, arquitetura preliminar, roadmap, riscos, regras e tarefa de bootstrap disponíveis no GitHub.
+**G0 — Documentação:** escopo, arquitetura, riscos, roadmap e BOOT-001 revisados.
 
-**G1 — Ambiente vinculado:** pasta local correta, `origin` validado, `main` sincronizada, documentação presente e working tree inspecionada. Nenhuma funcionalidade criada no bootstrap.
+**G1 — Bootstrap:** pasta local correta, remoto validado, `main` sincronizada, nenhuma funcionalidade implementada na inicialização.
 
-**G2 — Interface:** prévia aprovada visualmente pelo responsável, sem simular que há persistência real.
+**G2 — Leitura:** teste com pasta fictícia local; apenas arquivos permitidos; títulos e URLs formados corretamente; leitura falha tratada sem exposição de caminhos.
 
-**G3 — Segurança e ambiente:** backend capaz de rejeitar corretamente usuários não autorizados e prova técnica da sessão STAFF; escolha de persistência confirmada.
+**G3 — Interface:** pesquisa e cópia funcionais, responsividade e feedback visual revisados.
 
-**G4 — MVP funcional:** operações integradas, testes e evidências técnicas apresentados, incluindo cenários de falha e acesso indevido.
+**G4 — Segurança/publicação:** inspeção do diretório real para decidir se um **catálogo sem login pode ser público**; links, arquivo `.htaccess`, dotfiles, symlinks e erros tratados com segurança.
 
-**G5 — Publicação:** revisão de riscos, implantação e homologação humana.
+**G5 — Homologação/implantação:** validação do MVP, autorização humana para publicação e documentação final.
 
-## Estados de tarefa
+As tarefas são pequenas e independentes. Não avançar automaticamente de uma para outra.
+
+## Estados das tarefas
 
 `PLANEJADA` → `AUTORIZADA` → `EM_IMPLEMENTACAO` → `EM_VALIDACAO` → `AGUARDANDO_HOMOLOGACAO` → `CONCLUIDA`.
 
-Uma falha de teste ou reprovação retorna a tarefa ao estado anterior pertinente. Nunca marcar concluída apenas por ter gerado código.
-
-## Fora do planejamento vigente
-
-Upload de arquivos, gestão de executáveis, integração com WhatsApp, métricas, relatórios, categorias e novos perfis de login. Novas ideias poderão ser avaliadas separadamente, sem ampliação silenciosa do MVP.
+Qualquer mudança posterior de escopo deve ser registrada antes de implementada.
