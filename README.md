@@ -5,21 +5,21 @@
 ## Acompanhamento do desenvolvimento
 
 **Atualizado em:** 09/10/2026  
-**Fase atual:** SCAN-001 — autorizada, aguardando implementação.  
-**Fundação e bootstrap:** homologados em 09/10/2026. Nenhum código funcional implementado até o momento.
+**Fase atual:** SCAN-001 — implementada e em validação, aguardando homologação.
+**Fundação e bootstrap:** homologados em 09/10/2026.
 
 | Ordem | ID | Etapa | Status |
 | --- | --- | --- | --- |
 | 0 | **INIT-001** | Fundação documental e definição do escopo | 🟢 Concluído |
 | 1 | **[BOOT-001](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)** | Preparação e sincronização do ambiente local | 🟢 Concluído |
-| 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | ⚪ Autorizada — não iniciada |
+| 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🔵 Aguardando homologação |
 | 3 | **UI-001** | Interface responsiva, pesquisa e cópia de links | ⚪ Não iniciado |
 | 4 | **QA-001** | Testes funcionais e validações de segurança | ⚪ Não iniciado |
 | 5 | **DEP-001** | Implantação e homologação final | ⚪ Não iniciado |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** sincronizar os commits documentais mais recentes na pasta local e executar exclusivamente a SCAN-001 em branch própria. Ao finalizar, apresentar testes e evidências para homologação. A UI-001 permanece não autorizada.
+**Próxima ação:** revisar as evidências da SCAN-001 e homologar ou solicitar correções. A UI-001 permanece não autorizada.
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
