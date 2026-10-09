@@ -2,13 +2,13 @@
 
 ## Estado em 09/10/2026
 
-**Fase atual:** fundação documental remota. **Implementação funcional:** não iniciada.
+**Fase atual:** fundação documental publicada, aguardando revisão humana e bootstrap local. **Implementação funcional:** não iniciada.
 
 As etapas seguem o Método ÓRBITA: planejamento → implementação autorizada → testes/evidências → homologação humana → avanço.
 
 | Ordem | ID | Entrega | Estado |
 | --- | --- | --- | --- |
-| 0 | INIT-001 | Fundação documental no GitHub | Em preparação |
+| 0 | INIT-001 | Fundação documental no GitHub | Aguardando revisão |
 | 1 | BOOT-001 | Bootstrap Git seguro na pasta local | Planejada |
 | 2 | UI-001 | Protótipo visual responsivo com dados fictícios | Planejada |
 | 3 | SEC-001 | Prova de autorização STAFF e validação do ambiente PHP | Planejada |
