@@ -1,11 +1,36 @@
 # DEP-001 — Implantação controlada da Central de Links
 
-**Estado:** AUTORIZADA em 09/10/2026 — 🟡 preparação e verificações técnicas em andamento; publicação ainda condicionada aos gates de segurança.
+**Estado:** AUTORIZADA em 09/10/2026 — 🟡 preparação do pacote local pelo Codex; implantação manual no cPanel ainda pendente e condicionada aos gates de segurança.
 **Prazo operacional solicitado:** 09/10/2026, **até 15h (America/Sao_Paulo)**.
 **Objetivo:** disponibilizar a Central de Links para uso dos técnicos da Technolife na hospedagem existente.
 **Destino definido pelo responsável (09/10/2026):** `https://suporte.technolife.net.br/links/` (também acessível digitando `https://suporte.technolife.net.br/links`, mediante resolução ou redirecionamento normal do servidor).
 **Pasta:** criar a nova subpasta pública `links` na raiz web existente do domínio `suporte.technolife.net.br`; **não** colocar a página dentro de `/downloads/`. A localização física precisa ser confirmada no cPanel.
 **Pré-requisitos:** QA-001 homologada e integrada à `main` no PR #3. O responsável autorizou **iniciar a DEP-001**. A publicação pública exige **confirmação separada da publicabilidade de todos os arquivos atuais e futuros**.
+
+## Separação obrigatória dos ambientes
+
+**O Codex executa no notebook de desenvolvimento, não no servidor cPanel.** Não presumir que ele disponha de SSH, cPanel, File Manager ou de acesso aos arquivos reais da empresa. A autorização de início da DEP-001 **não** concede acesso remoto nem valida o ambiente de produção.
+
+### Fase A — Preparação local com Codex (executar agora)
+
+1. Sincronizar `main`, criar uma branch própria `deploy/DEP-001-preparacao-links` e ler esta tarefa e o relatório de QA.
+2. Preparar **um pacote implantável local**, destinado especificamente à URL `https://suporte.technolife.net.br/links/` e à subpasta pública `links/`.
+3. O pacote deve distinguir claramente os **arquivos a enviar à pasta pública `links/`** (somente `index.php`, CSS, JS e `assets/`) do **leitor PHP privado e da configuração privada**, destinados a um local fora de toda a raiz pública do domínio. **Jamais** copiar `src/` para a raiz pública por causa do `../src/DownloadScanner.php` atual.
+4. Adequar de forma mínima e segura o bootstrap/require do scanner para funcionar com a separação física entre `links/` e o código privado. O código versionado não pode conter caminhos reais, senhas ou segredos. Se a configuração por `getenv` não estiver disponível no servidor, preparar alternativa por arquivo **privado** de configuração, com exemplo fictício versionável; valores reais serão preenchidos somente no cPanel. Validar localmente o include e o comportamento fail-closed sem configuração.
+5. Testar em diretórios fictícios que reproduzam a separação **webroot da pasta `links/` x arquivos privados externos**; preservar as suítes SCAN-001 e UI-001. Verificar também HTTP 404 para arquivos que não podem ser acessados pela web.
+6. Produzir instruções objetivas para implantação **manual pelo cPanel File Manager**: pastas a criar, conteúdo exato a enviar a cada pasta, configuração no contexto PHP HTTP, verificações, rollback. Nunca registrar os caminhos físicos reais do servidor no repositório público.
+7. Registrar commits, testes e um PR apenas da preparação; interromper antes de qualquer ação remota ou publicação.
+
+### Fase B — Implantação no cPanel (realizada pelo responsável, com orientação)
+
+1. O responsável acessa o cPanel do servidor da empresa, confirma a raiz web do domínio e cria a subpasta **`links/`** nessa raiz.
+2. Após aprovação do pacote, envia cada conjunto de arquivos ao destino correto **usando o File Manager**, sem colocar código privado, `.git/`, `docs/` ou `tests/` dentro da webroot.
+3. Configura os valores reais de diretório e URL-base somente no servidor, de forma privada, após verificar a versão/handler PHP e as permissões.
+4. **Antes de tornar o catálogo acessível**, confirma que a pasta de origem contém exclusivamente nomes e arquivos cuja listagem pública é permitida, inclusive os uploads futuros. Essa autorização não é presumida pelo simples início desta tarefa.
+5. Testa `https://suporte.technolife.net.br/links/`, abertura via `/links`, pesquisa, clipboard, links HTTPS reais e indisponibilidade dos arquivos privados na web; confirma que HESK e `/downloads/` continuam íntegros.
+6. Relata o resultado para a homologação operacional e, se necessário, executa o rollback documentado.
+
+**Fluxo:** Codex prepara no notebook → responsável revisa o pacote → responsável publica via cPanel → ambos verificam o resultado → homologação final. Não pedir ao Codex que execute comandos ou altere arquivos no cPanel sem um acesso remoto explicitamente configurado e autorizado, o que **não está disponível nesta etapa**.
 
 ## Prioridade operacional
 
@@ -66,4 +91,4 @@ O horário das 15h é um **marco de entrega desejado**, não uma autorização p
 - rollback possível;
 - status final: CONCLUÍDO, PARCIAL ou BLOQUEADO com motivo.
 
-**Gate de início:** autorizado pelo responsável humano em 09/10/2026 após homologação da QA-001. São autorizadas inspeção, configuração e preparação controlada do ambiente. **Não liberar a URL do catálogo ao público antes de confirmar o inventário publicável, proteger código/configuração e concluir os smoke tests.** Registrar evidências para homologação operacional.
+**Gate de início:** autorizado pelo responsável humano em 09/10/2026 após homologação da QA-001. O Codex está autorizado a preparar e testar o pacote **no notebook**. A configuração e a publicação **no servidor da empresa serão manuais pelo responsável**, após verificação do inventário publicável e confirmação do ambiente. **Não liberar a URL do catálogo ao público antes de confirmar o inventário, proteger código/configuração e concluir os smoke tests.**
