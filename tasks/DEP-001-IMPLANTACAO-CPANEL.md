@@ -1,6 +1,6 @@
 # DEP-001 — Implantação controlada da Central de Links
 
-**Estado:** FASE_B_EM_PREPARACAO em 09/10/2026 — 🟡 Fase A homologada, [pacote e instruções](../docs/07-PREPARACAO-DEP-001.md) integrados pelo PR #4, merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`. Fase B manual iniciada; publicação pendente dos gates de segurança.
+**Estado:** FASE_B_OPERACIONAL_AGUARDANDO_VERIFICACAO em 09/10/2026 — 🔵 responsável confirmou produção funcionando (listagem, cópia, download); fechamento formal depende de verificações HTTP de proteção de `.htaccess` e código privado, além de integridade do HESK. Fase A homologada pelo PR #4, merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`.
 **Prazo operacional solicitado:** 09/10/2026, **até 15h (America/Sao_Paulo)**.
 **Objetivo:** disponibilizar a Central de Links para uso dos técnicos da Technolife na hospedagem existente.
 **Destino definido pelo responsável (09/10/2026):** `https://suporte.technolife.net.br/links/` (também acessível digitando `https://suporte.technolife.net.br/links`, mediante resolução ou redirecionamento normal do servidor).
@@ -100,3 +100,16 @@ O responsável declarou expressamente que **todos os arquivos atuais e futuros**
 - status final: CONCLUÍDO, PARCIAL ou BLOQUEADO com motivo.
 
 **Gate de início:** autorizado pelo responsável humano em 09/10/2026 após homologação da QA-001. O Codex está autorizado a preparar e testar o pacote **no notebook**. A configuração e a publicação **no servidor da empresa serão manuais pelo responsável**, após verificação do inventário publicável e confirmação do ambiente. **Não liberar a URL do catálogo ao público antes de confirmar o inventário, proteger código/configuração e concluir os smoke tests.**
+
+## Evidência de funcionamento no servidor — 09/10/2026
+
+O responsável executou pelo terminal cPanel (conta da empresa) a verificação dos arquivos e relatou:
+
+- PHP CLI 8.2.34, `str_starts_with` disponível, `links/index.php`, `DownloadScanner.php`, `config.php` e diretório de downloads legíveis.
+- Localizador privado configurado em `PRIVATE_PARENT_LEVELS = 2`.
+- Erro PHP 500 ocorrido após ativar leitura: `strict_types declaration must be the very first statement` no `config.php`. Houve backup e remoção da linha problemática, seguida por `php -l config.php` sem erros e `CONFIGURACAO: OK`.
+- `php -l links/index.php` sem erros; `curl` à Central retornou HTTP **200**.
+- Após a correção, o responsável **confirmou pessoalmente** que a página aparece, lista os arquivos reais de `/downloads/`, copia os links completos e abre/baixa os arquivos como planejado.
+- A publicabilidade dos arquivos atuais e futuros foi **explicitamente autorizada**, com exclusão do arquivo `.htaccess`; o scanner não lista dotfiles.
+
+**Sem comprovação independente nesta sessão:** teste HTTP de leitura direta a `/downloads/.htaccess` (esperado 403/404); inacessibilidade HTTP do leitor/configuração privados; verificação de HESK. Não declarar esses itens concluídos antes de obter evidência. Não publicar conteúdos internos ou caminhos absolutos operacionais no Git público.
