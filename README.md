@@ -2,6 +2,27 @@
 
 **Catálogo web automático de links de download** de programas, instaladores e ferramentas hospedados pela Technolife. Feito para que a equipe de suporte encontre rapidamente o arquivo certo, clique no link ou copie sua URL HTTPS para enviar ao cliente.
 
+## Acompanhamento do desenvolvimento
+
+**Atualizado em:** 09/10/2026  
+**Fase atual:** BOOT-001 — execução técnica concluída, aguardando homologação humana.  
+**Implementação funcional:** não iniciada.
+
+| Ordem | ID | Etapa | Status |
+| --- | --- | --- | --- |
+| 0 | **INIT-001** | Fundação documental e definição do escopo | 🔵 Aguardando revisão |
+| 1 | **[BOOT-001](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)** | Preparação e sincronização do ambiente local | 🔵 Aguardando homologação |
+| 2 | **SCAN-001** | Leitor PHP automático da pasta `/downloads/` | ⚪ Não iniciado |
+| 3 | **UI-001** | Interface responsiva, pesquisa e cópia de links | ⚪ Não iniciado |
+| 4 | **QA-001** | Testes funcionais e validações de segurança | ⚪ Não iniciado |
+| 5 | **DEP-001** | Implantação e homologação final | ⚪ Não iniciado |
+
+**Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
+
+**Próxima ação:** homologar a BOOT-001 e sincronizar os commits documentais no ambiente local antes de iniciar a SCAN-001. Uma tarefa tecnicamente concluída **não** recebe 🟢 sem homologação humana.
+
+Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
+
 ## Problema
 
 Os arquivos já estão disponíveis na pasta `/downloads/` da hospedagem. Durante os atendimentos, os técnicos precisam descobrir e compartilhar seus endereços completos. Criar e manter manualmente uma segunda lista de links acrescentaria trabalho desnecessário.
@@ -60,25 +81,6 @@ Os arquivos exibidos são gerenciados na hospedagem, fora da Central de Links.
 - [Governança ÓRBITA](docs/04-GOVERNANCA.md)
 - [Decisões e riscos](docs/05-DECISOES-E-RISCOS.md)
 - [BOOT-001 — Bootstrap local seguro](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)
-
-## Acompanhamento do desenvolvimento
-
-**Atualizado em:** 09/10/2026  
-**Fase atual:** BOOT-001 — execução técnica concluída; aguardando homologação humana.  
-**Implementação funcional:** não iniciada.
-
-| Ordem | Tarefa | Etapa / Entrega | Situação |
-| --- | --- | --- | --- |
-| 0 | **INIT-001** | Fundação documental e definição do escopo | Aguardando revisão |
-| 1 | **[BOOT-001](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)** | Preparação e sincronização do ambiente local | **Aguardando homologação** |
-| 2 | **SCAN-001** | Leitor PHP automático da pasta `/downloads/` | Planejada |
-| 3 | **UI-001** | Interface responsiva, pesquisa e cópia de links | Planejada |
-| 4 | **QA-001** | Testes funcionais e validações de segurança | Planejada |
-| 5 | **DEP-001** | Implantação na hospedagem e homologação final | Planejada |
-
-**Próxima ação:** homologar a BOOT-001 e sincronizar os novos commits documentais no ambiente local antes da primeira tarefa funcional. **Nenhuma etapa é aprovada automaticamente.**
-
-Os critérios de aceite e o histórico do planejamento estão no [roadmap completo](docs/03-ROADMAP.md). Esta tabela deve ser atualizada junto com o roadmap sempre que houver mudança de estado.
 
 ## Método ÓRBITA
 
