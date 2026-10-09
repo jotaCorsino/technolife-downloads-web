@@ -1,6 +1,6 @@
 # 07 — DEP-001, Fase A: pacote local para `/links/`
 
-**Estado:** preparado no notebook em 09/10/2026; aguardando revisão do PR. **Nada foi enviado ao servidor da empresa.** A Fase B será feita manualmente pelo responsável após confirmar o inventário publicável e o ambiente do cPanel.
+**Estado:** 🟢 Fase A homologada em 09/10/2026 e integrada à `main` pelo [PR #4](https://github.com/jotaCorsino/technolife-downloads-web/pull/4), merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`. **Nada foi enviado ao servidor da empresa.** Fase B manual iniciada, dependente da confirmação do inventário publicável e do ambiente do cPanel.
 
 ## Pacote produzido
 
@@ -47,4 +47,4 @@ Os ZIPs não contêm `config.php`, valores reais, arquivos de downloads, `tests/
 - Servidor PHP local: `/links/`, CSS e logo HTTP 200; `/links` exibiu a página; tentativas de ler `/src/DownloadScanner.php` e `/technolife-links-private/DownloadScanner.php` pela web retornaram 404.
 - **Não validado aqui:** caminhos, permissões, versão/handler PHP, comportamento HTTP e inventário real do cPanel. Nenhum acesso ao servidor da empresa foi realizado.
 
-**Gate:** PR da Fase A para revisão. O pacote local não autoriza a Fase B nem confirma a publicabilidade do catálogo.
+**Gate:** Fase A aprovada pelo responsável; iniciar Fase B manual com validação de diretórios e permissões. **A homologação do pacote não confirma a publicabilidade do catálogo** nem comprova que a configuração funciona no cPanel.
