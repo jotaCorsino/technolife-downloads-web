@@ -1,6 +1,6 @@
 # DEP-001 — Implantação controlada da Central de Links
 
-**Estado:** FASE_A_AGUARDANDO_REVISAO em 09/10/2026 — 🔵 [pacote e instruções locais](../docs/07-PREPARACAO-DEP-001.md) preparados; implantação manual no cPanel ainda pendente e condicionada aos gates de segurança.
+**Estado:** FASE_B_EM_PREPARACAO em 09/10/2026 — 🟡 Fase A homologada, [pacote e instruções](../docs/07-PREPARACAO-DEP-001.md) integrados pelo PR #4, merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`. Fase B manual iniciada; publicação pendente dos gates de segurança.
 **Prazo operacional solicitado:** 09/10/2026, **até 15h (America/Sao_Paulo)**.
 **Objetivo:** disponibilizar a Central de Links para uso dos técnicos da Technolife na hospedagem existente.
 **Destino definido pelo responsável (09/10/2026):** `https://suporte.technolife.net.br/links/` (também acessível digitando `https://suporte.technolife.net.br/links`, mediante resolução ou redirecionamento normal do servidor).
@@ -11,7 +11,7 @@
 
 **O Codex executa no notebook de desenvolvimento, não no servidor cPanel.** Não presumir que ele disponha de SSH, cPanel, File Manager ou de acesso aos arquivos reais da empresa. A autorização de início da DEP-001 **não** concede acesso remoto nem valida o ambiente de produção.
 
-### Fase A — Preparação local com Codex (executar agora)
+### Fase A — Preparação local com Codex (🟢 concluída e homologada)
 
 1. Sincronizar `main`, criar uma branch própria `deploy/DEP-001-preparacao-links` e ler esta tarefa e o relatório de QA.
 2. Preparar **um pacote implantável local**, destinado especificamente à URL `https://suporte.technolife.net.br/links/` e à subpasta pública `links/`.
@@ -21,7 +21,7 @@
 6. Produzir instruções objetivas para implantação **manual pelo cPanel File Manager**: pastas a criar, conteúdo exato a enviar a cada pasta, configuração no contexto PHP HTTP, verificações, rollback. Nunca registrar os caminhos físicos reais do servidor no repositório público.
 7. Registrar commits, testes e um PR apenas da preparação; interromper antes de qualquer ação remota ou publicação.
 
-### Fase B — Implantação no cPanel (realizada pelo responsável, com orientação)
+### Fase B — Implantação no cPanel (🟡 iniciada pelo responsável, com orientação)
 
 1. O responsável acessa o cPanel do servidor da empresa, confirma a raiz web do domínio e cria a subpasta **`links/`** nessa raiz.
 2. Após aprovação do pacote, envia cada conjunto de arquivos ao destino correto **usando o File Manager**, sem colocar código privado, `.git/`, `docs/` ou `tests/` dentro da webroot.
