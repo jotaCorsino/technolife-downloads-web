@@ -1,60 +1,68 @@
 # Technolife — Central de Links
 
-Aplicação web interna para localizar, cadastrar e compartilhar links diretos de download utilizados pela equipe de suporte técnico da Technolife.
+**Catálogo web automático de links de download** de programas, instaladores e ferramentas hospedados pela Technolife. Feito para que a equipe de suporte encontre rapidamente o arquivo certo, clique no link ou copie sua URL HTTPS para enviar ao cliente.
 
 ## Problema
 
-Os instaladores e arquivos permanecem hospedados no ambiente da empresa, mas os técnicos precisam de um catálogo único para encontrar e copiar seus endereços sem procurar manualmente arquivos ou acessar o painel da hospedagem.
+Os arquivos já estão disponíveis na pasta `/downloads/` da hospedagem. Durante os atendimentos, os técnicos precisam descobrir e compartilhar seus endereços completos. Criar e manter manualmente uma segunda lista de links acrescentaria trabalho desnecessário.
 
-## Solução proposta
+## Solução
 
-Um painel enxuto, com pesquisa instantânea e operações de **copiar**, **cadastrar**, **editar** e **excluir** links. Cada registro exige somente **título** e **URL**. As alterações devem ser compartilhadas entre os técnicos autorizados.
+Uma página enxuta, somente leitura, que **consulta os arquivos existentes em `/downloads/`**, normaliza os nomes para apresentação, permite pesquisa instantânea e oferece **Abrir/Baixar** e **Copiar link**.
 
-A aplicação **não armazena executáveis, não faz upload e não substitui a hospedagem dos arquivos**: organiza apenas os respectivos endereços.
+Quando um arquivo é adicionado ou removido da pasta pela operação habitual da hospedagem, ele aparece ou desaparece da lista na próxima atualização da página. Não há registros a cadastrar.
+
+**Não existem formulários de cadastro, edição, exclusão, banco de dados, upload de arquivos, novo login ou integração com a sessão do HESK.**
 
 ## MVP
 
-| Recurso | Comportamento esperado |
+| Recurso | Comportamento |
 | --- | --- |
-| Catálogo | Listar os programas cadastrados |
-| Busca | Filtrar imediatamente pelo título |
-| Copiar link | Copiar URL com um clique e indicar sucesso/erro |
-| Novo link | Informar título e URL, validar e salvar |
-| Editar/excluir | Manter os registros atualizados; confirmar exclusões |
-| Dados compartilhados | Persistir os registros para toda a equipe |
-| Acesso restrito | Somente técnicos autorizados podem consultar e alterar |
+| Listagem automática | Ler apenas arquivos comuns diretamente de `/downloads/` |
+| Filtragem de segurança | Ignorar `.htaccess`, outros itens ocultos, subpastas e links simbólicos |
+| Título normalizado | Derivar um título legível do nome do arquivo, preservando o nome real na URL |
+| Pesquisa instantânea | Filtrar localmente por título ou nome de arquivo, sem recarregar a página |
+| Copiar link | Copiar a URL HTTPS completa em um clique, com feedback discreto |
+| Abrir/Baixar | Abrir o link direto do arquivo; o comportamento de download depende do servidor/navegador |
+| Atualização | Refletir o conteúdo atual da pasta a cada carregamento/atualização da página |
+| Responsividade | Funcionar em computadores e dispositivos móveis |
 
-## Diretrizes técnicas
+## Tecnologias
 
-- **Interface:** HTML, CSS e JavaScript puro, responsivo e sem frameworks desnecessários.
-- **Servidor:** PHP compatível com a hospedagem existente, sujeito à validação no ambiente real.
-- **Persistência:** armazenamento compartilhado simples; SQLite é candidato, condicionado à disponibilidade da extensão e ao ambiente; alternativa será avaliada.
-- **Autenticação:** preferência por reutilizar a sessão de STAFF do HESK, **dependendo de prova de integração segura**. Não presumir que compartilhar domínio ou cookie garante autorização.
-- **Hospedagem dos arquivos:** separada do catálogo; o sistema manipula apenas links.
+- **HTML e CSS:** interface minimalista, inspirada nos aplicativos internos da Technolife.
+- **JavaScript puro:** pesquisa instantânea e botão de copiar.
+- **PHP mínimo:** lê o diretório no servidor e gera a lista; o navegador não acessa pastas do servidor diretamente.
+- **Hospedagem existente:** arquivos permanecem em `/downloads/`; a Central não realiza upload nem hospeda executáveis.
 
-**Estado atual:** fundação documental; nenhuma funcionalidade implementada ou integração validada.
+**Sem persistência própria ou autenticação no aplicativo.** A pasta de downloads já é a fonte de dados.
+
+## Visibilidade e segurança
+
+**Sem login significa catálogo publicamente acessível.** O sistema só deve ser publicado nesse formato se **os nomes e os links de todos os arquivos exibidos puderem ser divulgados publicamente**. Links diretos dos downloads também permanecem acessíveis conforme a configuração da hospedagem.
+
+O código deve:
+
+- listar somente arquivos regulares de uma pasta fixa, sem recursão;
+- ignorar `.htaccess` e demais nomes iniciados por ponto;
+- não seguir symlinks;
+- usar uma base HTTPS de download configurada pelo servidor, e não entrada do visitante;
+- codificar corretamente nomes de arquivo nas URLs e escapar texto apresentado na página;
+- não expor caminhos físicos do servidor nem detalhes internos nos erros;
+- tratar diretório ausente ou inacessível com mensagem genérica e sem listar nada.
+
+Os arquivos exibidos são gerenciados na hospedagem, fora da Central de Links.
 
 ## Documentação
 
-- [Escopo e critérios do MVP](docs/01-ESCOPO.md)
-- [Arquitetura inicial e segurança](docs/02-ARQUITETURA.md)
-- [Roadmap e estado do projeto](docs/03-ROADMAP.md)
-- [Regras de desenvolvimento e homologação](docs/04-GOVERNANCA.md)
-- [Decisões, premissas e riscos](docs/05-DECISOES-E-RISCOS.md)
-- [Primeira tarefa: bootstrap local](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)
+- [Escopo e aceite](docs/01-ESCOPO.md)
+- [Arquitetura e leitura de arquivos](docs/02-ARQUITETURA.md)
+- [Roadmap](docs/03-ROADMAP.md)
+- [Governança ÓRBITA](docs/04-GOVERNANCA.md)
+- [Decisões e riscos](docs/05-DECISOES-E-RISCOS.md)
+- [BOOT-001 — Bootstrap local seguro](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)
 
-## Forma de trabalho
+## Método e estado
 
-O projeto usa o [Método ÓRBITA](https://github.com/jotaCorsino/orbita-development-model): **Planejar → Executar → Evidenciar → Homologar**.
+Desenvolvimento assistido por IA pelo [Método ÓRBITA](https://github.com/jotaCorsino/orbita-development-model): **Planejar → Executar → Evidenciar → Homologar**. ChatGPT organiza o planejamento, Codex implementa tarefas autorizadas e o responsável humano homologa.
 
-O responsável humano decide e homologa. O ChatGPT organiza planejamento e documentação. O Codex executa tarefas autorizadas na cópia local, valida e apresenta evidências. O GitHub é a referência persistente do projeto.
-
-**Regra de partida:** fundação documental remota → bootstrap local seguro → primeira funcionalidade autorizada.
-
-## Segurança e publicação
-
-Este repositório é **público**. Não registrar nele segredos, credenciais, arquivos reais de clientes, sessões, banco de produção, caminhos internos privados ou configurações confidenciais. Somente um backend com autorização efetiva poderá expor o catálogo e as operações administrativas no ambiente de produção.
-
-## Situação em 09/10/2026
-
-Fundação inicial de planejamento criada. Próximo gate: conectar a pasta local **technolife-downloads-web** ao remoto e confirmar a sincronização, sem implementar funcionalidades.
+**09/10/2026:** escopo simplificado definido, documentação ajustada e implementação funcional ainda não iniciada. Próxima etapa: bootstrap local antes da primeira funcionalidade.
