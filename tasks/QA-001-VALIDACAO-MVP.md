@@ -1,10 +1,10 @@
 # QA-001 — Validação funcional, técnica e de segurança do MVP
 
-**Estado:** AGUARDANDO_HOMOLOGACAO em 09/10/2026 — execução documentada em [`docs/06-RELATORIO-QA.md`](../docs/06-RELATORIO-QA.md).
+**Estado:** CONCLUIDA — 🟢 homologada em 09/10/2026, relatório em [`docs/06-RELATORIO-QA.md`](../docs/06-RELATORIO-QA.md).
 **Pré-requisito:** UI-001 homologada pelo responsável e integrada à `main` no PR #2; SCAN-001 homologada no PR #1.
 **Agente executor:** Codex, na working copy local `technolife-downloads-web`.
 **Branch executada:** `test/QA-001-validacao-mvp`.
-**Pull Request:** [#3 — QA-001](https://github.com/jotaCorsino/technolife-downloads-web/pull/3) — aguardando homologação.
+**Pull Request:** [#3 — QA-001](https://github.com/jotaCorsino/technolife-downloads-web/pull/3) — integrado à `main`.
 
 ## Objetivo
 
@@ -74,4 +74,4 @@ Não apresentar qualquer item de ambiente **não testado** como validado. O rela
 
 Deploy, DNS, cPanel de produção, arquivos reais, inspeção do inventário de clientes, publicação do catálogo, novas funcionalidades, métricas, integração HESK e trabalho da DEP-001.
 
-**Gate:** criar o PR da QA-001 e **parar para homologação humana**. Não realizar merge ou implantar.
+**Gate homologado:** 🟢 QA-001 aprovada pelo responsável em 09/10/2026; merge `cf992aad4f2dc43fdc18c3d23e7f6c2afd38bf61`. Próxima tarefa [DEP-001](DEP-001-IMPLANTACAO-CPANEL.md) autorizada para execução controlada. Publicação depende de verificação do cPanel e da publicabilidade do inventário.
