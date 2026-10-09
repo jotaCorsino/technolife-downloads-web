@@ -1,6 +1,6 @@
 # DEP-001 — Implantação controlada da Central de Links
 
-**Estado:** FASE_B_OPERACIONAL_AGUARDANDO_VERIFICACAO em 09/10/2026 — 🔵 responsável confirmou produção funcionando (listagem, cópia, download); fechamento formal depende de verificações HTTP de proteção de `.htaccess` e código privado, além de integridade do HESK. Fase A homologada pelo PR #4, merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`.
+**Estado:** FASE_B_OPERACIONAL_AGUARDANDO_HESK em 09/10/2026 — 🔵 produção funcional confirmada pelo responsável e HTTP de segurança aprovado (200/403/404); falta apenas confirmar integridade do HESK para homologação final. Fase A homologada pelo PR #4, merge `eaf36cb542f802b616f06bbf651c73eac5cefcc4`.
 **Prazo operacional solicitado:** 09/10/2026, **até 15h (America/Sao_Paulo)**.
 **Objetivo:** disponibilizar a Central de Links para uso dos técnicos da Technolife na hospedagem existente.
 **Destino definido pelo responsável (09/10/2026):** `https://suporte.technolife.net.br/links/` (também acessível digitando `https://suporte.technolife.net.br/links`, mediante resolução ou redirecionamento normal do servidor).
@@ -112,4 +112,4 @@ O responsável executou pelo terminal cPanel (conta da empresa) a verificação 
 - Após a correção, o responsável **confirmou pessoalmente** que a página aparece, lista os arquivos reais de `/downloads/`, copia os links completos e abre/baixa os arquivos como planejado.
 - A publicabilidade dos arquivos atuais e futuros foi **explicitamente autorizada**, com exclusão do arquivo `.htaccess`; o scanner não lista dotfiles.
 
-**Sem comprovação independente nesta sessão:** teste HTTP de leitura direta a `/downloads/.htaccess` (esperado 403/404); inacessibilidade HTTP do leitor/configuração privados; verificação de HESK. Não declarar esses itens concluídos antes de obter evidência. Não publicar conteúdos internos ou caminhos absolutos operacionais no Git público.
+**Testes HTTP reportados pelo responsável no Terminal do cPanel em 09/10/2026:** `/links/` → **200**; `/downloads/.htaccess` → **403**; `/technolife-links-private/config.php` → **404**; `/technolife-links-private/DownloadScanner.php` → **404**. A saída foi examinada nesta conversa; não foi um teste executado diretamente por este assistente. **Ainda pendente:** comprovar login/consulta do HESK após o deploy para fechar a homologação operacional. Não publicar conteúdos internos ou caminhos absolutos operacionais no Git público.
