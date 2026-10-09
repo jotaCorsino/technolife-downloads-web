@@ -2,8 +2,9 @@
 
 - **Data:** 09/10/2026
 - **Estado:** AGUARDANDO_HOMOLOGACAO
-- **Base:** `main` sincronizada com `origin/main` em `dc03585`, após o merge do PR #2.
+- **Base:** `main` sincronizada inicialmente em `dc03585`, após o merge do PR #2; commits documentais posteriores de `origin/main` até `827b3db` incorporados na branch de QA.
 - **Branch de QA:** `test/QA-001-validacao-mvp`.
+- **Pull Request:** [#3 — QA-001](https://github.com/jotaCorsino/technolife-downloads-web/pull/3).
 
 ## Resultado
 
@@ -43,7 +44,7 @@ As fixtures foram criadas em diretório temporário com conteúdo fictício. A a
 
 ## PENDENTE NO CPANEL — preparação para DEP-001
 
-- [ ] Definir domínio/caminho de publicação e document root **somente em `public/`**; manter `src/`, `tests/`, `tasks/`, `docs/` e metadados Git fora do webroot. Confirmar por requisição HTTP que código e testes não são servidos.
+- [ ] Definir domínio/caminho de publicação, inclusive subpasta exclusiva se aplicável, sem alterar HESK ou `/downloads/`. O webroot efetivo deve expor **somente o conteúdo de `public/`**; manter `src/`, `tests/`, `tasks/`, `docs/` e metadados Git fora dele. Confirmar por requisição HTTP que código e testes não são servidos.
 - [ ] Confirmar no ambiente real a versão de PHP **8.2 ou superior** e o handler ativo. O [MultiPHP Manager do cPanel](https://docs.cpanel.net/cpanel/software/multiphp-manager-for-cpanel/) documenta a seleção da versão por domínio; a disponibilidade depende do provedor.
 - [ ] Configurar `TECHNOLIFE_DOWNLOADS_DIR` com o caminho absoluto real e `TECHNOLIFE_DOWNLOADS_BASE_URL` com a base HTTPS real **fora do repositório e do webroot**. A forma de fornecer variáveis ao processo HTTP deve ser confirmada com o provedor para o handler usado. Variáveis do shell local não comprovam disponibilidade no PHP-FPM ou LiteSpeed; a [documentação de pools PHP-FPM do cPanel](https://docs.cpanel.net/knowledge-base/php-fpm/php-fpm-domain-pools/) descreve configurações por domínio, enquanto o [cPanel ressalta que LiteSpeed não usa sua implementação de PHP-FPM](https://docs.cpanel.net/knowledge-base/php-fpm/php-fastcgi-process-manager-php-fpm/). Validar `getenv()` no contexto da requisição sem publicar valores ou paths.
 - [ ] Confirmar que o processo PHP consegue ler a pasta real e que `open_basedir`, se ativo, permite tanto a pasta de downloads quanto `src/`. Verificar a URL HTTPS e a resposta do servidor para nomes especiais, sem versionar dados privados.

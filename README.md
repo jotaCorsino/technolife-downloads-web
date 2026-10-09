@@ -4,6 +4,8 @@
 
 ## Acompanhamento do desenvolvimento
 
+**Meta de entrega operacional:** 09/10/2026, **até 15h (America/Sao_Paulo)** — disponibilizar o MVP para os técnicos. Prazo-alvo, sujeito à QA homologada, validação de publicabilidade dos arquivos e implantação segura.
+
 **Atualizado em:** 09/10/2026  
 **Fase atual:** QA-001 — validada localmente, aguardando homologação.
 **Etapas homologadas:** INIT-001, BOOT-001, SCAN-001 e UI-001. PR #2 integrado em 09/10/2026.
@@ -15,11 +17,11 @@
 | 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🟢 Concluído |
 | 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | 🟢 Concluído |
 | 4 | **[QA-001](tasks/QA-001-VALIDACAO-MVP.md)** | Testes funcionais e validações de segurança | 🔵 Aguardando homologação |
-| 5 | **DEP-001** | Implantação e homologação final | ⚪ Não iniciado |
+| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | ⚪ Planejada — não autorizada |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** revisar o [relatório da QA-001](docs/06-RELATORIO-QA.md) e homologar ou solicitar correções. Publicação no cPanel exige decisão separada sobre os bloqueadores documentados; ainda não realizar deploy.
+**Próxima ação:** revisar o [relatório da QA-001](docs/06-RELATORIO-QA.md) e homologar ou solicitar correções. A [DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md) requer autorização separada após resolver os bloqueadores documentados. **Prazo-alvo operacional: 15h de hoje; ainda não realizar deploy.**
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
@@ -113,6 +115,7 @@ Não há dependências de terceiros nem build. Os links **Abrir / baixar** usam 
 - [SCAN-001 — Leitor PHP automático](tasks/SCAN-001-LEITOR-DOWNLOADS.md)
 - [UI-001 — Interface do catálogo](tasks/UI-001-INTERFACE-CATALOGO.md)
 - [QA-001 — Validação do MVP](tasks/QA-001-VALIDACAO-MVP.md)
+- [DEP-001 — Implantação no cPanel](tasks/DEP-001-IMPLANTACAO-CPANEL.md)
 
 ## Método ÓRBITA
 

@@ -4,6 +4,7 @@
 **Pré-requisito:** UI-001 homologada pelo responsável e integrada à `main` no PR #2; SCAN-001 homologada no PR #1.
 **Agente executor:** Codex, na working copy local `technolife-downloads-web`.
 **Branch executada:** `test/QA-001-validacao-mvp`.
+**Pull Request:** [#3 — QA-001](https://github.com/jotaCorsino/technolife-downloads-web/pull/3) — aguardando homologação.
 
 ## Objetivo
 
