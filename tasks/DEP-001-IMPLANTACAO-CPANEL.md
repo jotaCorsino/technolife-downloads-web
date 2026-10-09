@@ -1,6 +1,6 @@
 # DEP-001 — Implantação controlada da Central de Links
 
-**Estado:** AUTORIZADA em 09/10/2026 — 🟡 preparação do pacote local pelo Codex; implantação manual no cPanel ainda pendente e condicionada aos gates de segurança.
+**Estado:** FASE_A_AGUARDANDO_REVISAO em 09/10/2026 — 🔵 [pacote e instruções locais](../docs/07-PREPARACAO-DEP-001.md) preparados; implantação manual no cPanel ainda pendente e condicionada aos gates de segurança.
 **Prazo operacional solicitado:** 09/10/2026, **até 15h (America/Sao_Paulo)**.
 **Objetivo:** disponibilizar a Central de Links para uso dos técnicos da Technolife na hospedagem existente.
 **Destino definido pelo responsável (09/10/2026):** `https://suporte.technolife.net.br/links/` (também acessível digitando `https://suporte.technolife.net.br/links`, mediante resolução ou redirecionamento normal do servidor).

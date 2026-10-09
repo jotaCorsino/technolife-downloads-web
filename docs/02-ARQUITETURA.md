@@ -75,7 +75,7 @@ Esta ferramenta **não autentica usuários**. A página publicada será um índi
 - **URL final da aplicação:** `https://suporte.technolife.net.br/links/` — a pasta `links/` deverá ser criada na raiz web do domínio após confirmar a estrutura no cPanel.
 - **Origem dos arquivos:** `https://suporte.technolife.net.br/downloads/`; os links copiados continuam apontando diretamente para essa pasta.
 - `links/` deve conter somente arquivos públicos de `public/`, e não o repositório completo.
-- **Importante:** `public/index.php` atualmente usa `../src/DownloadScanner.php`; ao colocar `index.php` dentro da pasta `links/` na webroot existente, esse caminho relativo cairia na raiz pública. **Não publicar `src/` ali**. Adaptar e validar o include para apontar a um diretório privado fora do document root do domínio, sem versionar paths operacionais.
+- **Fase A DEP-001:** `public/index.php` localiza o leitor em `technolife-links-private/` fora de toda a webroot, por variável privada do PHP web ou por um número de níveis configurado após conferir a estrutura no cPanel. O pacote padrão usa nível `0` e falha fechado. O leitor e `config.php` real nunca entram na pasta pública; ver [preparação e instruções](07-PREPARACAO-DEP-001.md).
 - Evitar alterar o HESK e os demais caminhos do domínio; testar `/links/` e `/links`.
 
 ## Deploy — verificar antes da implantação

@@ -7,7 +7,7 @@
 **Meta de entrega operacional:** 09/10/2026, **até 15h (America/Sao_Paulo)** — disponibilizar o MVP para os técnicos em **`https://suporte.technolife.net.br/links/`**. Pasta pública `links/` a criar no domínio de suporte; implantação ainda condicionada à verificação do cPanel e à autorização de exposição dos arquivos.
 
 **Atualizado em:** 09/10/2026  
-**Fase atual:** DEP-001 — implantação autorizada; preparação de cPanel iniciada.  
+**Fase atual:** DEP-001 — Fase A preparada localmente, aguardando revisão; publicação manual pendente.
 **Etapas homologadas:** INIT-001, BOOT-001, SCAN-001, UI-001 e QA-001. PR #3 integrado em 09/10/2026.
 
 | Ordem | ID | Etapa | Status |
@@ -17,11 +17,11 @@
 | 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🟢 Concluído |
 | 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | 🟢 Concluído |
 | 4 | **[QA-001](tasks/QA-001-VALIDACAO-MVP.md)** | Testes funcionais e validações de segurança | 🟢 Concluído |
-| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | 🟡 Autorizada — preparação em andamento |
+| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | 🔵 Fase A em revisão; Fase B pendente |
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** criar a pasta `links/` na raiz pública confirmada do domínio `suporte.technolife.net.br`, preparar a implantação mantendo o scanner **fora de toda a webroot**, validar permissões, HTTPS e o inventário publicável. Publicar somente após aprovação explícita da exposição pública dos arquivos. **Prazo-alvo operacional: 15h de hoje.**
+**Próxima ação:** revisar o [pacote e as instruções da Fase A](docs/07-PREPARACAO-DEP-001.md). A publicação manual no cPanel depende de confirmar a estrutura da conta, a leitura pelo PHP web e a publicabilidade de todos os arquivos. Nenhum arquivo foi enviado ao servidor. **Prazo-alvo operacional: 15h de hoje.**
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
@@ -85,6 +85,7 @@ printf 'exemplo\n' > "$fixture_dir/Technolife-RustDesk-Windows.zip"
 printf 'exemplo\n' > "$fixture_dir/Olá Mundo #1?.tar.gz"
 TECHNOLIFE_DOWNLOADS_DIR="$fixture_dir" \
 TECHNOLIFE_DOWNLOADS_BASE_URL='https://example.invalid/downloads' \
+TECHNOLIFE_LINKS_PRIVATE_DIR="$PWD/src" \
 php -S 127.0.0.1:8000 -t public
 ```
 
@@ -101,7 +102,7 @@ node tests/InterfaceScriptTest.js
 php tests/DownloadScannerTest.php
 ```
 
-Não há dependências de terceiros nem build. Os links **Abrir / baixar** usam a mesma aba; o navegador e o servidor definem se o arquivo abre ou é baixado.
+A aplicação não exige dependências de terceiros nem build para funcionar. O **pacote de implantação** é gerado localmente com `python3 deployment/build_package.py` e mantém arquivos públicos e privados em ZIPs separados. Os links **Abrir / baixar** usam a mesma aba; o navegador e o servidor definem se o arquivo abre ou é baixado.
 
 ## Documentação
 
@@ -111,6 +112,7 @@ Não há dependências de terceiros nem build. Os links **Abrir / baixar** usam 
 - [Governança ÓRBITA](docs/04-GOVERNANCA.md)
 - [Decisões e riscos](docs/05-DECISOES-E-RISCOS.md)
 - [Relatório de QA do MVP](docs/06-RELATORIO-QA.md)
+- [Preparação local e publicação manual DEP-001](docs/07-PREPARACAO-DEP-001.md)
 - [BOOT-001 — Bootstrap local seguro](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)
 - [SCAN-001 — Leitor PHP automático](tasks/SCAN-001-LEITOR-DOWNLOADS.md)
 - [UI-001 — Interface do catálogo](tasks/UI-001-INTERFACE-CATALOGO.md)

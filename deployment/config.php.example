@@ -1,0 +1,10 @@
+<?php
+
+declare(strict_types=1);
+
+// Copy to config.php only in the private directory outside every webroot.
+// Fill both values on the server; never commit the completed file.
+return [
+    'downloads_dir' => '',
+    'downloads_base_url' => '',
+];

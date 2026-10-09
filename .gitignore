@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+/deployment/config.php
 *.pem
 *.key
 
@@ -22,6 +23,8 @@
 /node_modules/
 /dist/
 /build/
+__pycache__/
+*.pyc
 .DS_Store
 Thumbs.db
 .idea/
