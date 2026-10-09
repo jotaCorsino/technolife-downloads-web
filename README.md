@@ -4,7 +4,7 @@
 
 ## Acompanhamento do desenvolvimento
 
-**Meta de entrega operacional:** 09/10/2026, **até 15h (America/Sao_Paulo)** — disponibilizar o MVP para os técnicos. Prazo-alvo, sujeito à QA homologada, validação de publicabilidade dos arquivos e implantação segura.
+**Meta de entrega operacional:** 09/10/2026, **até 15h (America/Sao_Paulo)** — disponibilizar o MVP para os técnicos em **`https://suporte.technolife.net.br/links/`**. Pasta pública `links/` a criar no domínio de suporte; implantação ainda condicionada à verificação do cPanel e à autorização de exposição dos arquivos.
 
 **Atualizado em:** 09/10/2026  
 **Fase atual:** DEP-001 — implantação autorizada; preparação de cPanel iniciada.  
@@ -21,7 +21,7 @@
 
 **Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
 
-**Próxima ação:** iniciar a [DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md) no cPanel e validar configuração, isolamento da webroot, permissões e o inventário publicável. Publicar somente após aprovação explícita da exposição pública dos arquivos e conclusão dos testes de segurança. **Prazo-alvo operacional: 15h de hoje.**
+**Próxima ação:** criar a pasta `links/` na raiz pública confirmada do domínio `suporte.technolife.net.br`, preparar a implantação mantendo o scanner **fora de toda a webroot**, validar permissões, HTTPS e o inventário publicável. Publicar somente após aprovação explícita da exposição pública dos arquivos. **Prazo-alvo operacional: 15h de hoje.**
 
 Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
 
