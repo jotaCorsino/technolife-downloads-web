@@ -1,9 +1,9 @@
 # DEP-001 — Implantação controlada da Central de Links
 
-**Estado:** PLANEJADA — preparação documental antecipada em 09/10/2026; **execução ainda NÃO autorizada**.
+**Estado:** AUTORIZADA em 09/10/2026 — 🟡 preparação e verificações técnicas em andamento; publicação ainda condicionada aos gates de segurança.
 **Prazo operacional solicitado:** 09/10/2026, **até 15h (America/Sao_Paulo)**.
 **Objetivo:** disponibilizar a Central de Links para uso dos técnicos da Technolife na hospedagem existente.
-**Pré-requisitos:** QA-001 concluída/homologada e autorização humana explícita para publicar.
+**Pré-requisitos:** QA-001 homologada e integrada à `main` no PR #3. O responsável autorizou **iniciar a DEP-001**. A publicação pública exige **confirmação separada da publicabilidade de todos os arquivos atuais e futuros**.
 
 ## Prioridade operacional
 
@@ -54,4 +54,4 @@ O horário das 15h é um **marco de entrega desejado**, não uma autorização p
 - rollback possível;
 - status final: CONCLUÍDO, PARCIAL ou BLOQUEADO com motivo.
 
-**Gate:** implantação depende de homologação da QA-001 e autorização explícita para DEP-001. Nenhuma ação de servidor é autorizada por esta documentação.
+**Gate de início:** autorizado pelo responsável humano em 09/10/2026 após homologação da QA-001. São autorizadas inspeção, configuração e preparação controlada do ambiente. **Não liberar a URL do catálogo ao público antes de confirmar o inventário publicável, proteger código/configuração e concluir os smoke tests.** Registrar evidências para homologação operacional.
