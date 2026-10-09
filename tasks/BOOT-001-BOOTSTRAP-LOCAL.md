@@ -1,6 +1,6 @@
 # BOOT-001 — Bootstrap local seguro
 
-**Estado:** AGUARDANDO_HOMOLOGACAO em 09/10/2026 — execução técnica relatada como concluída, sem funcionalidade.
+**Estado:** CONCLUIDA — 🟢 homologada em 09/10/2026; nenhuma funcionalidade implementada.
 
 ## Identidade
 
@@ -56,6 +56,10 @@ O Codex reportou que o bloqueio inicial foi causado por `.git` apresentado como 
 - **Estado:** `working tree clean` e documentação local presente.
 - **Funcionalidades implementadas:** nenhuma.
 
-A execução técnica **atende aos critérios relatados**, mas a decisão de homologação continua com o responsável humano. Depois deste registro documental remoto, a working copy local deverá buscar as atualizações antes de iniciar outra tarefa.
+A execução técnica foi relatada como conforme aos critérios e o responsável humano **autorizou prosseguir em 09/10/2026**, homologando esta etapa. A working copy local deverá buscar as atualizações documentais antes de iniciar a próxima tarefa.
 
 O incidente recorrente foi registrado no [Método ÓRBITA](https://github.com/jotaCorsino/orbita-development-model/blob/main/troubleshooting/001-BOOTSTRAP-GIT-CODEX-SANDBOX-SOMENTE-LEITURA.md). Esse registro não altera as regras do método.
+
+## Homologação — 09/10/2026
+
+**Resultado:** 🟢 APROVADO. A autorização para prosseguir foi concedida pelo responsável humano após o relatório do Codex. A próxima tarefa funcional autorizada é [SCAN-001](SCAN-001-LEITOR-DOWNLOADS.md). Nenhuma implantação foi autorizada.
