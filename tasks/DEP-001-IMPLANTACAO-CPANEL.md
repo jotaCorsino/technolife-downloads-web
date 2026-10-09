@@ -81,6 +81,14 @@ Priorizar o fluxo mínimo funcional já aprovado: lista automática dos arquivos
 
 O horário das 15h é um **marco de entrega desejado**, não uma autorização para superar controles nem um compromisso de sucesso antes de verificar a hospedagem.
 
+## Registro do gate de publicabilidade — 09/10/2026
+
+O responsável declarou expressamente que **todos os arquivos atuais e futuros** da pasta de downloads podem ter nomes e links apresentados no catálogo público, **exceto `.htaccess`**, que nunca deve ser listado ou disponibilizado por HTTP. O scanner já exclui todos os dotfiles da enumeração; manter a proteção do servidor para negar leitura HTTP direta de `.htaccess` (confirmar 403/404).
+
+**Preparação relatada pelo responsável:** a pasta `links/` foi criada ao lado de `downloads/` no document root do domínio; a pasta `technolife-links-private/` foi criada ao lado do document root; os dois arquivos privados foram extraídos, `config.php` foi preenchido e o ZIP público foi extraído em `links/`. Essas etapas foram **relatadas**, mas ainda não validadas diretamente por acesso ao servidor.
+
+**Ativação orientada ao responsável:** editar `links/index.php` para `const PRIVATE_PARENT_LEVELS = 2;`, somente após confirmar a relação entre as pastas. Os testes HTTP reais de listagem, cópia, HTTPS, proteção do `.htaccess`, isolamento do código privado e funcionamento do HESK ainda são obrigatórios para encerrar DEP-001.
+
 ## Evidências exigidas
 
 - URL final e horário real de disponibilização (se publicada);
