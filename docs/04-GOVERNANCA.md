@@ -1,6 +1,6 @@
 # 04 — Regras locais de desenvolvimento e homologação
 
-O projeto segue o [Método ÓRBITA](https://github.com/jotaCorsino/orbita-development-model).
+A [entrada AGENTS](../AGENTS.md) define composição e revisões propostas nesta adequação. Este documento mantém regras locais.
 
 ## Identidade
 
@@ -9,15 +9,15 @@ O projeto segue o [Método ÓRBITA](https://github.com/jotaCorsino/orbita-develo
 - **Branch principal:** `main`
 - **Pasta local:** `technolife-downloads-web`
 - **Planejamento:** ChatGPT
-- **Implementação:** Codex
+- **Implementação:** agente autorizado; ferramenta conforme necessidade
 - **Decisão/homologação:** responsável humano
 
 ## Regras
 
 1. O GitHub é a referência persistente. Antes de trabalhar, consultar documentação e estado atual.
 2. Desenvolver o **catálogo automático somente leitura**, sem ampliar o escopo silenciosamente.
-3. Primeiro executar `BOOT-001` para sincronizar a pasta local; **não implementar funcionalidades no bootstrap**.
-4. Após o bootstrap, trabalhar por tarefas com ID, escopo, critérios de aceite e evidências.
+3. BOOT-001 concluído; verificar sincronização/HEAD quando necessário, sem repetir bootstrap.
+4. Na manutenção, trabalhar por tarefas com ID, escopo, critérios de aceite e evidências.
 5. Usar branch específica e PR revisável para mudanças funcionais quando aplicável.
 6. Não executar merge, deploy ou destruição de dados sem gate e homologação humana.
 7. Nenhuma tarefa está homologada só porque o código executou; testes e riscos precisam ser reportados.
