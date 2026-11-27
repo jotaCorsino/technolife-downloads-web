@@ -1,6 +1,6 @@
 # 03 — Roadmap e acompanhamento
 
-## Estado em 09/10/2026
+## Estado homologado em 09/10/2026
 
 **Marco de entrega solicitado às 14h12:** disponibilizar a Central de Links para os técnicos **até 15h de 09/10/2026 (America/Sao_Paulo)**, no endereço **`https://suporte.technolife.net.br/links/`**, criando a subpasta `links/` no domínio. Prazo prioritário, condicionado à segurança do deploy. Ver [DEP-001](../tasks/DEP-001-IMPLANTACAO-CPANEL.md).
 
@@ -19,7 +19,7 @@
 
 Não há tarefas de CRUD, sessão STAFF, cadastro de links nem banco de dados. Essas frentes foram **canceladas por simplificação do escopo** antes de qualquer implementação.
 
-## Prioridade da entrega de hoje
+## Prioridade histórica da entrega de 09/10/2026
 
 1. Finalizar QA-001 e obter evidências e homologação humana.
 2. Homologar e integrar PR de QA, se aprovado, preservando a `main`.
@@ -49,3 +49,7 @@ As tarefas são pequenas e independentes. Não avançar automaticamente de uma p
 `PLANEJADA` → `AUTORIZADA` → `EM_IMPLEMENTACAO` → `EM_VALIDACAO` → `AGUARDANDO_HOMOLOGACAO` → `CONCLUIDA`.
 
 Qualquer mudança posterior de escopo deve ser registrada antes de implementada.
+
+## Adequação HUB-EVO-001/08 — 27/11/2026
+
+MVP e DEP-001 preservados, sem reiniciar gates. Proposta de AGENTS e Modelo B, sem alteração de aplicação. SIS-EVO-001 futura e condicionada; catálogo público read-only permanece. Gate documental desta PR; nenhum teste ou deploy novo.

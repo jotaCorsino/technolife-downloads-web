@@ -1,124 +1,39 @@
 # Technolife — Central de Links
 
-**Catálogo web automático de links de download** de programas, instaladores e ferramentas hospedados pela Technolife. Feito para que a equipe de suporte encontre rapidamente o arquivo certo, clique no link ou copie sua URL HTTPS para enviar ao cliente.
+Catálogo automático de downloads, somente leitura, com busca e cópia de URLs. PHP, HTML/CSS e JavaScript nativo; sem login, banco ou cadastro de arquivos.
 
-## Acompanhamento do desenvolvimento
+_Atualizado em 27/11/2026 · Adequação documental HUB-EVO-001/08 em revisão._
 
-**Meta de entrega operacional:** 09/10/2026, até 15h (America/Sao_Paulo). **Implantação operacional reportada pelo responsável** em `https://suporte.technolife.net.br/links/`: listagem, cópia e download funcionando. Os testes HTTP de acesso e isolamento do código passaram conforme saída do Terminal do cPanel. O responsável confirmou que o HESK permaneceu funcionando normalmente e homologou o encerramento da DEP-001.
+## Situação atual
 
-**Atualizado em:** 09/10/2026  
-**Fase atual:** todas as etapas concluídas e homologadas em 09/10/2026.
-**Etapas homologadas:** INIT-001, BOOT-001, SCAN-001, UI-001 e QA-001. PR #3 integrado em 09/10/2026.
-
-| Ordem | ID | Etapa | Status |
-| --- | --- | --- | --- |
-| 0 | **INIT-001** | Fundação documental e definição do escopo | 🟢 Concluído |
-| 1 | **[BOOT-001](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)** | Preparação e sincronização do ambiente local | 🟢 Concluído |
-| 2 | **[SCAN-001](tasks/SCAN-001-LEITOR-DOWNLOADS.md)** | Leitor PHP automático da pasta `/downloads/` | 🟢 Concluído |
-| 3 | **[UI-001](tasks/UI-001-INTERFACE-CATALOGO.md)** | Interface responsiva, pesquisa e cópia de links | 🟢 Concluído |
-| 4 | **[QA-001](tasks/QA-001-VALIDACAO-MVP.md)** | Testes funcionais e validações de segurança | 🟢 Concluído |
-| 5 | **[DEP-001](tasks/DEP-001-IMPLANTACAO-CPANEL.md)** | Implantação e homologação final | 🟢 Concluído — homologado |
-
-**Legenda:** ⚪ Não iniciado · 🟡 Em andamento · 🔵 Em validação / aguardando homologação · 🟢 Concluído (homologado) · 🟠 Pausado.
-
-**Resultado:** implantação encerrada e aprovada pelo responsável, sem pendências do MVP. Testes HTTP de proteção aprovados e HESK funcionando normalmente.
-
-Os detalhes, critérios de aceite e gates estão no [roadmap completo](docs/03-ROADMAP.md). **Atualizar esta tabela e o roadmap juntos** sempre que o estado mudar.
-
-## Problema
-
-Os arquivos já estão disponíveis na pasta `/downloads/` da hospedagem. Durante os atendimentos, os técnicos precisam descobrir e compartilhar seus endereços completos. Criar e manter manualmente uma segunda lista de links acrescentaria trabalho desnecessário.
-
-## Solução
-
-Uma página enxuta, somente leitura, que **consulta os arquivos existentes em `/downloads/`**, normaliza os nomes para apresentação, permite pesquisa instantânea e oferece **Abrir/Baixar** e **Copiar link**.
-
-Quando um arquivo é adicionado ou removido da pasta pela operação habitual da hospedagem, ele aparece ou desaparece da lista na próxima atualização da página. Não há registros a cadastrar.
-
-**Não existem formulários de cadastro, edição, exclusão, banco de dados, upload de arquivos, novo login ou integração com a sessão do HESK.**
-
-## MVP
-
-| Recurso | Comportamento |
+| Indicador | Situação |
 | --- | --- |
-| Listagem automática | Ler apenas arquivos comuns diretamente de `/downloads/` |
-| Filtragem de segurança | Ignorar `.htaccess`, outros itens ocultos, subpastas e links simbólicos |
-| Título normalizado | Derivar um título legível do nome do arquivo, preservando o nome real na URL |
-| Pesquisa instantânea | Filtrar localmente por título ou nome de arquivo, sem recarregar a página |
-| Copiar link | Copiar a URL HTTPS completa em um clique, com feedback discreto |
-| Abrir/Baixar | Abrir o link direto do arquivo; o comportamento de download depende do servidor/navegador |
-| Atualização | Refletir o conteúdo atual da pasta a cada carregamento/atualização da página |
-| Responsividade | Funcionar em computadores e dispositivos móveis |
+| **Primeira versão** | MVP e DEP-001 homologados em 09/10/2026; operação de listagem, cópia e download confirmada pelo responsável |
+| **Agora** | Governança e painel Modelo B preparados; aplicação e implantação existentes preservadas |
+| **Quanto falta** | Nenhuma pendência do MVP registrada. Adequação documental aguarda aceite; evolução visual futura por gate próprio |
+| **Próximo passo** | Homologar esta adequação; manter operação e tratar somente demanda autorizada |
 
-## Tecnologias
+## Pendências
 
-- **HTML e CSS:** interface minimalista, inspirada nos aplicativos internos da Technolife.
-- **JavaScript puro:** pesquisa instantânea e botão de copiar.
-- **PHP mínimo:** lê o diretório no servidor e gera a lista; o navegador não acessa pastas do servidor diretamente.
-- **Hospedagem existente:** arquivos permanecem em `/downloads/`; a Central não realiza upload nem hospeda executáveis.
+| Prioridade | O que falta | Próxima ação |
+| --- | --- | --- |
+| Documental | Aceite/integração da governança | Revisar esta PR e [AGENTS](AGENTS.md) |
+| Futura | Avaliar SIS-EVO-001 quando referência homologada | Não impor login, sidebar, banco ou refatoração |
+| Operacional | Exposição pública de novos arquivos | Confirmar autorização de divulgação; não tratar URL obscura como controle de acesso |
 
-**Sem persistência própria ou autenticação no aplicativo.** A pasta de downloads já é a fonte de dados.
+## Evolução
 
-## Visibilidade e segurança
+| Marco | Resultado | Evidência |
+| --- | --- | --- |
+| INIT-001 / BOOT-001 | Fundação e ambiente vinculados | [Roadmap](docs/03-ROADMAP.md) |
+| SCAN-001 / UI-001 | Leitor, busca e cópia homologados | [Leitura](tasks/SCAN-001-LEITOR-DOWNLOADS.md) · [Interface](tasks/UI-001-INTERFACE-CATALOGO.md) |
+| QA-001 | Segurança e validações funcionais aprovadas | [QA](docs/06-RELATORIO-QA.md) |
+| DEP-001 | Implantação e aceite operacional em 09/10, HTTP 200/403/404 nos escopos registrados, HESK preservado | [Preparação](docs/07-PREPARACAO-DEP-001.md) · [Roadmap](docs/03-ROADMAP.md) |
 
-**Sem login significa catálogo publicamente acessível.** O sistema só deve ser publicado nesse formato se **os nomes e os links de todos os arquivos exibidos puderem ser divulgados publicamente**. Links diretos dos downloads também permanecem acessíveis conforme a configuração da hospedagem.
+## Onde consultar
 
-O código deve:
+[Escopo](docs/01-ESCOPO.md) · [Arquitetura](docs/02-ARQUITETURA.md) · [Governança](docs/04-GOVERNANCA.md) · [Decisões](docs/05-DECISOES-E-RISCOS.md) · [QA](docs/06-RELATORIO-QA.md) · [Execução local e comandos aprovados no README anterior](https://github.com/jotaCorsino/technolife-downloads-web/blob/cfe912148435ec1bcffefc19b0559092db5bff9c/README.md#execução-local-com-arquivos-fictícios) · [AGENTS](AGENTS.md).
 
-- listar somente arquivos regulares de uma pasta fixa, sem recursão;
-- ignorar `.htaccess` e demais nomes iniciados por ponto;
-- não seguir symlinks;
-- usar uma base HTTPS de download configurada pelo servidor, e não entrada do visitante;
-- codificar corretamente nomes de arquivo nas URLs e escapar texto apresentado na página;
-- não expor caminhos físicos do servidor nem detalhes internos nos erros;
-- tratar diretório ausente ou inacessível com mensagem genérica e sem listar nada.
+## Limites
 
-Os arquivos exibidos são gerenciados na hospedagem, fora da Central de Links.
-
-## Execução local com arquivos fictícios
-
-Use PHP 8+ e uma pasta temporária criada para o teste. Node.js 18+ é necessário somente para o teste do JavaScript. O servidor web deve apontar para `public/`, deixando `src/` e `tests/` fora da raiz pública.
-
-```bash
-fixture_dir=$(mktemp -d)
-printf 'exemplo\n' > "$fixture_dir/Technolife-RustDesk-Windows.zip"
-printf 'exemplo\n' > "$fixture_dir/Olá Mundo #1?.tar.gz"
-TECHNOLIFE_DOWNLOADS_DIR="$fixture_dir" \
-TECHNOLIFE_DOWNLOADS_BASE_URL='https://example.invalid/downloads' \
-TECHNOLIFE_LINKS_PRIVATE_DIR="$PWD/src" \
-php -S 127.0.0.1:8000 -t public
-```
-
-Abra `http://127.0.0.1:8000/`. Pesquise por `ola`, confira a contagem e o estado sem resultados, e use o ícone de copiar link. O endereço `example.invalid` é fictício: o ícone de abrir/baixar aponta diretamente para o URL gerado, mas não baixa um arquivo real neste exemplo. Os ícones têm nomes acessíveis e dicas ao passar o cursor. Para testar a pasta vazia, inicie o servidor com uma pasta temporária sem arquivos; para testar a mensagem de erro, inicie sem as duas variáveis. A página não escolhe diretório ou URL por parâmetros do visitante. Em produção, a página deve ser acessada por HTTPS para o Clipboard API funcionar nos navegadores compatíveis.
-
-Validações automatizadas locais:
-
-```bash
-php -l public/index.php
-php -l tests/InterfaceTest.php
-php tests/InterfaceTest.php
-node --check public/app.js
-node tests/InterfaceScriptTest.js
-php tests/DownloadScannerTest.php
-```
-
-A aplicação não exige dependências de terceiros nem build para funcionar. O **pacote de implantação** é gerado localmente com `python3 deployment/build_package.py` e mantém arquivos públicos e privados em ZIPs separados. Os links **Abrir / baixar** usam a mesma aba; o navegador e o servidor definem se o arquivo abre ou é baixado.
-
-## Documentação
-
-- [Escopo e aceite](docs/01-ESCOPO.md)
-- [Arquitetura e leitura de arquivos](docs/02-ARQUITETURA.md)
-- [Roadmap](docs/03-ROADMAP.md)
-- [Governança ÓRBITA](docs/04-GOVERNANCA.md)
-- [Decisões e riscos](docs/05-DECISOES-E-RISCOS.md)
-- [Relatório de QA do MVP](docs/06-RELATORIO-QA.md)
-- [Preparação local e publicação manual DEP-001](docs/07-PREPARACAO-DEP-001.md)
-- [BOOT-001 — Bootstrap local seguro](tasks/BOOT-001-BOOTSTRAP-LOCAL.md)
-- [SCAN-001 — Leitor PHP automático](tasks/SCAN-001-LEITOR-DOWNLOADS.md)
-- [UI-001 — Interface do catálogo](tasks/UI-001-INTERFACE-CATALOGO.md)
-- [QA-001 — Validação do MVP](tasks/QA-001-VALIDACAO-MVP.md)
-- [DEP-001 — Implantação no cPanel](tasks/DEP-001-IMPLANTACAO-CPANEL.md)
-
-## Método ÓRBITA
-
-Desenvolvimento assistido por IA pelo [Método ÓRBITA](https://github.com/jotaCorsino/orbita-development-model): **Planejar → Executar → Evidenciar → Homologar**. ChatGPT organiza o planejamento, Codex implementa tarefas autorizadas e o responsável humano homologa.
+Catálogo público apenas de arquivos autorizados: ignorar dotfiles, subpastas e symlinks, preservar escape/URL HTTPS e erros sem dados sensíveis. Sem autenticação própria, edição, upload, CRUD ou integração STAFF. A prova operacional de 09/10 é histórica, não nova inspeção da produção. Sem deploy ou adoção automática do kit nesta entrega.
